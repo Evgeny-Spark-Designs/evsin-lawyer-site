@@ -18,7 +18,7 @@
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
 </script>
-</head><body><div class="page-wrap"><div class="capa-overview-wrap"></div><div class="w-embed"><style>
+</head><body data-palette="dark1"><div class="page-wrap"><div class="capa-overview-wrap"></div><div class="w-embed"><style>
 
 /* ============================================
    TABLE OF CONTENTS
@@ -95,11 +95,11 @@ html.lenis body {
    Если у элемента свой фиксированный светлый фон — var(--ink-fixed).
    Подробнее и с примерами — в РУКОВОДСТВО.md, раздел "1.6". */
 body {
-  --yellow: #7BBBFF;
-  --black: #050F2A;
+  --yellow: #5A7896;
+  --black: #F4EBD2;
   --ink-fixed: #050F2A;
-  color: #050F2A;
-  background-color: #F2FDFF;
+  color: #F4EBD2;
+  background-color: #0B1826;
 }
 
 /* .hero-cta-button/.hero-button/.cta-button — фон хардкожен в CSS
@@ -370,6 +370,31 @@ body {
   color: var(--ink-fixed);
 }
 
+@media (min-width: 768px) {
+  .nav-top-layout {
+    gap: clamp(1.35rem, 1.7vw, 1.6rem);
+  }
+
+  .nav-top-text {
+    font-size: clamp(0.92rem, 1.03vw, 1rem);
+    line-height: 1.48;
+  }
+
+  .faq-toggle {
+    box-sizing: border-box;
+    height: 4.85rem;
+    min-height: 4.85rem;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .nav-button-mask {
+    width: 105% !important;
+    margin-left: -2.5% !important;
+  }
+
+}
+
 /* .cta-chat (баббл "Готовы обсудить вашу ситуацию?" в CTA) — тот же
    фиксированный светлый фон (#e4e0ce, хардкод во внешнем CSS). */
 .cta-text {
@@ -547,6 +572,14 @@ body[data-palette="dark1"] .hero-heading {
    позиционируется абсолютно относительно .hero, а не .hero-sticky —
    этой правкой не двигается, останется на месте. */
 @media (min-width: 768px) {
+  /* 300vh left almost a full viewport of inert scrolling after the last
+     hero transition (which finishes around 70%). 190vh still gives the
+     choreography more than one viewport of scroll, without the empty tail. */
+  .hero {
+    height: 190vh;
+    min-height: 190vh;
+  }
+
   .hero-sticky {
     height: 100dvh;
   }
@@ -565,13 +598,711 @@ body[data-palette="dark1"] .hero-heading {
 }
 
 @media (min-width: 768px) {
+  .hero-navigation-wrap {
+    padding-inline: 4vw;
+  }
+  .hero-left-text {
+    margin-left: 3.3vw;
+  }
+  .hero-card-1,
+  .hero-card-2 {
+    transform: scale(0.82);
+    transform-origin: top center;
+  }
   .hero-card-3 {
-    right: 10%;
+    right: -11.5vw;
     left: auto;
-    top: -20%;
+    top: auto;
+    bottom: 4.5vh;
+    width: clamp(19rem, 23vw, 24rem);
+    padding: 1.25vw 1.5vw;
+    text-align: left;
+  }
+  .hero-card-3-item {
+    width: 100%;
+    font-size: clamp(0.84rem, 1vw, 1.1rem);
+  }
+  .hero-buttons-wrap {
+    position: relative;
+    width: clamp(28rem, 38vw, 38rem);
+    flex-wrap: wrap;
+    row-gap: 0.7vw;
+    overflow: visible;
+  }
+  .hero-usp {
+    position: absolute;
+    bottom: calc(100% + 0.8rem);
+    left: 0;
+    width: 100%;
+    visibility: visible !important;
+    color: #fff;
+    text-align: center;
+    font-family: "Tr 3 A", Arial, sans-serif;
+    font-size: clamp(1.45rem, 2vw, 2.35rem);
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+  }
+  .hero-usp span {
+    display: block;
+  }
+  .hero-usp span:last-child {
+    color: #7BBBFF;
+  }
+  .hero-logo-roles {
+    position: absolute;
+    top: calc(100% - 4.5vw);
+    left: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.32em;
+    width: 100%;
+    padding: 0 3.5vw;
+    color: var(--black);
+    font-family: "Tr 3 A", Arial, sans-serif;
+    font-size: clamp(2.25rem, 3.15vw, 3.65rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.9;
+    text-transform: uppercase;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(0.65em);
+    animation: heroLogoRolesReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 3.8s forwards;
+    will-change: opacity, filter, transform;
+  }
+  .nesh-logo-ghost-wrap > .nesh-logo-ghost {
+    display: block;
+    position: relative;
+    left: 0.25vw;
+    width: 95.3%;
+    margin-inline: auto;
+  }
+  @keyframes heroLogoRolesReveal {
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
   }
   .hero-heading {
     margin-left: -7vw;
+  }
+}
+
+/* Professional editorial typography and consistent overview controls */
+body,
+body .page-wrap,
+body .page-wrap * {
+  font-family: "Segoe UI Variable Text", "Segoe UI", Arial, sans-serif;
+}
+
+/* Client guide: a decision map between the hero and the proof section. */
+.case-map-section {
+  position: relative;
+  padding: clamp(3.5rem, 4vw, 4.5rem) 0 clamp(2.5rem, 3vw, 3.25rem);
+  overflow: clip;
+}
+
+#client-guide + #overview {
+  padding-top: clamp(4.5rem, 6.5vw, 6.5rem);
+}
+
+.case-map-section::before {
+  content: "";
+  position: absolute;
+  inset: 8% 5% auto 28%;
+  height: 38rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--yellow) 22%, transparent), transparent 68%);
+  filter: blur(2rem);
+  pointer-events: none;
+}
+
+.case-map-shell {
+  position: relative;
+  display: grid;
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+@media (min-width: 992px) {
+  .case-map-shell {
+    box-sizing: border-box;
+    padding-left: clamp(18rem, 21vw, 22rem);
+    padding-right: clamp(1.25rem, 2.5vw, 3rem);
+  }
+}
+
+.case-map-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(16rem, .65fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: end;
+  padding-bottom: clamp(2.5rem, 5vw, 5rem);
+}
+
+.case-map-kicker,
+.case-map-card-label,
+.case-map-side-label,
+.case-map-route-label {
+  font-size: clamp(.72rem, .78vw, .9rem);
+  font-weight: 750;
+  letter-spacing: .12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.case-map-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  margin-bottom: 1.2rem;
+}
+
+.case-map-kicker::before {
+  content: "";
+  width: .65rem;
+  height: .65rem;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 0 .32rem color-mix(in srgb, var(--yellow) 18%, transparent);
+}
+
+.case-map-title {
+  max-width: 12ch;
+  margin: 0;
+  color: var(--black);
+  font-size: clamp(3.15rem, 6.1vw, 7rem);
+  font-weight: 540;
+  letter-spacing: -.065em;
+  line-height: .9;
+  text-wrap: balance;
+}
+
+.case-map-lead {
+  max-width: 32rem;
+  margin: 0;
+  color: var(--black);
+  font-size: clamp(1.05rem, 1.35vw, 1.42rem);
+  line-height: 1.5;
+}
+
+.case-map-lead strong {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.case-map-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(19rem, .92fr);
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+.case-map-primary,
+.case-map-side,
+.case-map-route {
+  border-radius: clamp(1.15rem, 1.8vw, 2rem);
+}
+
+.case-map-primary {
+  position: relative;
+  min-height: clamp(30rem, 48vw, 43rem);
+  padding: clamp(1.5rem, 3vw, 3.25rem);
+  color: var(--ink-fixed);
+  background: var(--yellow);
+  overflow: hidden;
+}
+
+.case-map-primary::after {
+  content: "01";
+  position: absolute;
+  right: -.04em;
+  bottom: -.2em;
+  color: color-mix(in srgb, var(--ink-fixed) 9%, transparent);
+  font-size: clamp(13rem, 27vw, 30rem);
+  font-weight: 750;
+  letter-spacing: -.1em;
+  line-height: .7;
+}
+
+.case-map-card-label {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink-fixed) 28%, transparent);
+}
+
+.case-map-primary-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: calc(100% - 2.5rem);
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+  padding-top: clamp(2rem, 6vw, 6rem);
+}
+
+.case-map-primary h3 {
+  max-width: 10ch;
+  margin: 0;
+  font-size: clamp(2.85rem, 4.9vw, 5.6rem);
+  font-weight: 620;
+  letter-spacing: -.055em;
+  line-height: .92;
+}
+
+.case-map-primary-copy {
+  max-width: 33rem;
+}
+
+.case-map-primary-copy p {
+  margin: 0 0 1.35rem;
+  font-size: clamp(1.08rem, 1.32vw, 1.4rem);
+  line-height: 1.5;
+}
+
+.case-map-factors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-map-factors li {
+  padding: .7rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--ink-fixed) 28%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, white 18%, transparent);
+  font-size: clamp(.86rem, .96vw, 1.04rem);
+  line-height: 1.05;
+}
+
+.case-map-side {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(1.5rem, 2.5vw, 2.6rem);
+  color: var(--black);
+  background: color-mix(in srgb, var(--black) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--black) 18%, transparent);
+}
+
+.case-map-side-title {
+  max-width: 12ch;
+  margin: 1.1rem 0 clamp(2rem, 4vw, 4rem);
+  font-size: clamp(2rem, 3.25vw, 3.8rem);
+  font-weight: 620;
+  letter-spacing: -.05em;
+  line-height: .95;
+}
+
+.case-map-issues {
+  display: grid;
+  align-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: issue;
+}
+
+.case-map-issues li {
+  counter-increment: issue;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr auto;
+  gap: .8rem;
+  align-items: center;
+  min-height: 4.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--black) 18%, transparent);
+  font-size: clamp(1rem, 1.22vw, 1.3rem);
+  font-weight: 600;
+}
+
+.case-map-issues li::before {
+  content: "0" counter(issue);
+  font-size: .72rem;
+  font-weight: 750;
+  opacity: .56;
+}
+
+.case-map-issues li::after {
+  content: "↗";
+  font-size: 1.1rem;
+  opacity: .6;
+}
+
+.case-map-strategy {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .55rem;
+  margin-top: clamp(2rem, 4vw, 4rem);
+}
+
+.case-map-strategy span {
+  position: relative;
+  padding-top: 1.8rem;
+  font-size: clamp(.75rem, .8vw, .9rem);
+  font-weight: 700;
+}
+
+.case-map-strategy span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: .32rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--black) 17%, transparent);
+}
+
+.case-map-strategy span:nth-child(2)::before { background: color-mix(in srgb, var(--yellow) 58%, var(--black)); }
+.case-map-strategy span:nth-child(3)::before { background: var(--yellow); }
+
+.case-map-routes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+.case-map-proof {
+  display: grid;
+  grid-template-columns: minmax(17rem, .72fr) minmax(0, 1.28fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  margin-block: clamp(2rem, 4vw, 4rem);
+  padding: clamp(2rem, 4vw, 4rem) 0;
+  color: var(--black);
+  border-top: 1px solid color-mix(in srgb, var(--black) 20%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--black) 20%, transparent);
+}
+
+.case-map-proof h3 {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(2.5rem, 4.2vw, 4.9rem);
+  font-weight: 540;
+  letter-spacing: -.055em;
+  line-height: .94;
+}
+
+.case-map-proof-intro {
+  max-width: 48rem;
+  margin: 0 0 clamp(2rem, 3vw, 3.5rem);
+  font-size: clamp(1.08rem, 1.42vw, 1.5rem);
+  line-height: 1.48;
+}
+
+.case-map-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 2.2rem);
+}
+
+.case-map-proof-item {
+  padding-top: 1.1rem;
+  border-top: .32rem solid var(--yellow);
+}
+
+.case-map-proof-item strong {
+  display: block;
+  margin-bottom: .75rem;
+  color: var(--black);
+  font-size: clamp(1rem, 1.1vw, 1.18rem);
+}
+
+.case-map-proof-item p {
+  margin: 0;
+  font-size: clamp(.9rem, .96vw, 1.04rem);
+  line-height: 1.48;
+}
+
+.case-map-proof-note {
+  grid-column: 1 / -1;
+  margin: clamp(2rem, 3vw, 3rem) 0 0;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  color: var(--ink-fixed);
+  background: var(--yellow);
+  border-radius: .65rem;
+  font-size: clamp(1.06rem, 1.35vw, 1.45rem);
+  font-weight: 650;
+  line-height: 1.38;
+}
+
+.case-map-route {
+  position: relative;
+  display: block;
+  min-height: 21rem;
+  padding: clamp(1.5rem, 2.7vw, 2.8rem);
+  color: var(--ink-fixed);
+  background: #e4e0ce;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease;
+}
+
+.case-map-route::before {
+  content: attr(data-audience);
+  position: absolute;
+  right: -.04em;
+  bottom: -.22em;
+  color: color-mix(in srgb, var(--ink-fixed) 7%, transparent);
+  font-size: clamp(7rem, 11vw, 12rem);
+  font-weight: 750;
+  letter-spacing: -.08em;
+  line-height: .8;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.case-map-route:nth-child(2) {
+  background: color-mix(in srgb, var(--yellow) 36%, #e4e0ce);
+}
+
+.case-map-route .case-map-route-label {
+  display: inline-flex;
+  width: max-content;
+  padding: .72rem .9rem;
+  color: #e4e0ce;
+  background: var(--ink-fixed);
+  border-radius: .28rem;
+  font-size: clamp(.9rem, 1.05vw, 1.15rem);
+  letter-spacing: .11em;
+}
+
+.case-map-route:hover,
+.case-map-route:focus-visible {
+  transform: translateY(-.45rem);
+  box-shadow: 0 1.2rem 3rem color-mix(in srgb, var(--black) 18%, transparent);
+}
+
+.case-map-route:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+.case-map-route-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.case-map-route h3 {
+  max-width: 12ch;
+  margin: 1rem 0;
+  font-size: clamp(2.3rem, 3.7vw, 4.35rem);
+  font-weight: 540;
+  letter-spacing: -.055em;
+  line-height: .93;
+}
+
+.case-map-route p {
+  max-width: 31rem;
+  margin: 0;
+  font-size: clamp(.98rem, 1.1vw, 1.16rem);
+  line-height: 1.45;
+}
+
+.case-map-route-arrow {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: .85rem;
+  width: auto;
+  height: auto;
+  padding: .8rem 0 .55rem;
+  border: 0;
+  border-bottom: 2px solid currentColor;
+  border-radius: 0;
+  font-size: clamp(.78rem, .88vw, .98rem);
+  font-weight: 750;
+  letter-spacing: .08em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: gap .35s ease;
+}
+
+.case-map-route:hover .case-map-route-arrow {
+  gap: 1.35rem;
+}
+
+.case-map-reveal {
+  opacity: 0;
+  transform: translateY(2.4rem);
+  transition: opacity .85s ease, transform .85s cubic-bezier(.22, 1, .36, 1);
+}
+
+.case-map-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.case-map-reveal:nth-child(2) { transition-delay: .12s; }
+.case-map-reveal:nth-child(3) { transition-delay: .2s; }
+
+@media (max-width: 991px) {
+  .case-map-intro,
+  .case-map-board {
+    grid-template-columns: 1fr;
+  }
+  .case-map-title { max-width: 14ch; }
+  .case-map-primary { min-height: 36rem; }
+  .case-map-side-title { max-width: 18ch; }
+  .case-map-proof { grid-template-columns: 1fr; }
+  .case-map-proof h3 { max-width: 15ch; }
+}
+
+@media (max-width: 767px) {
+  .case-map-section {
+    padding: 4rem 0 2.5rem;
+  }
+  .case-map-intro { gap: 1.5rem; }
+  .case-map-title { font-size: clamp(2.85rem, 14vw, 4.7rem); }
+  .case-map-board,
+  .case-map-routes { grid-template-columns: 1fr; }
+  .case-map-proof-grid { grid-template-columns: 1fr; }
+  .case-map-primary { min-height: 34rem; }
+  .case-map-primary h3 { font-size: clamp(2.9rem, 13vw, 4.8rem); }
+  .case-map-route { min-height: 19rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-map-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .case-map-route { transition: none; }
+}
+
+/* The audience fork was removed from the landing page. Remove it from
+   layout entirely (not only visually) and hide its now-dead sidebar link. */
+#services {
+  display: none !important;
+}
+
+/* Compact the transition from the inline benefits statement to the CTA.
+   The template contributed 15vw below overview plus 10vw above the CTA. */
+#overview {
+  padding-bottom: clamp(5rem, 7.5vw, 7rem);
+}
+#webflow_journey {
+  padding-top: clamp(5rem, 7.5vw, 7rem);
+}
+
+@media (min-width: 768px) {
+  /* Keep the consultation CTA and the contact footer visually connected.
+     The template added 10vw below the CTA and 15vw above the footer,
+     which combined into a large empty band between the two sections. */
+  #webflow_journey {
+    padding-bottom: 0;
+  }
+  .footer {
+    padding-top: 0;
+  }
+  #overview .h2-big {
+    width: min(100%, 11ch);
+    margin-inline: auto;
+    margin-bottom: 4.5vw;
+    font-size: clamp(4.75rem, 8vw, 7.5rem);
+    font-weight: 650;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+    text-align: center;
+    text-wrap: balance;
+  }
+  #overview .what_you_get-text {
+    width: min(58rem, 64vw);
+    color: var(--black);
+    font-size: clamp(2.65rem, 3.55vw, 3.9rem);
+    font-weight: 550;
+    letter-spacing: -0.045em;
+    line-height: 1.16;
+    text-align: center;
+    text-wrap: balance;
+  }
+  #overview .what_you_get-text,
+  #overview .what_you_get-text * {
+    color: var(--black) !important;
+  }
+  #overview .what_you_get-text [data-connect] {
+    display: inline-block;
+    width: 7rem;
+    height: 3.5rem;
+    margin-inline: 0.25em;
+    position: relative;
+    top: -0.17em;
+    vertical-align: middle;
+  }
+  #overview .what_you_get-text [data-connect="i"],
+  #overview .what_you_get-text [data-connect="gsap"] {
+    top: 0;
+  }
+  #overview .what_you_get-text [data-connect="p"] {
+    top: 0;
+  }
+  #overview .capa-card {
+    min-width: 7rem;
+  }
+  #overview .capa-card-item {
+    box-sizing: border-box;
+    min-width: 7rem;
+    min-height: 3.5rem;
+    justify-content: center;
+    padding: 0.7rem 0.85rem;
+    background-color: #ebeada;
+    border: 1px solid rgba(90, 120, 150, 0.38);
+    border-radius: 0.72rem;
+    box-shadow: 0 0.35rem 1.2rem rgba(5, 15, 42, 0.12);
+  }
+  #overview .capa-card-top-item {
+    gap: 0.7rem;
+    align-items: center;
+  }
+  #overview .capa-card .webflow-icon,
+  #overview .capa-card .capa-settings-icon,
+  #overview .capa-card .capa-seo-icon,
+  #overview .capa-card .capa-gsap-icon,
+  #overview .capa-card .capa-performance-icon,
+  #overview .capa-card .gsap-icon {
+    flex: 0 0 auto;
+    height: auto !important;
+    max-height: 2rem;
+  }
+  /* Optical sizing: the five SVG viewBoxes have very different aspect
+     ratios, so one shared width made the thin scales/chain look smaller
+     than the map, blocks and lock. */
+  #overview .capa-card .webflow-icon {
+    width: 2.05rem !important;
+  }
+  #overview .capa-card .capa-settings-icon {
+    width: 1.45rem !important;
+  }
+  #overview .capa-card .capa-seo-icon {
+    width: 1.65rem !important;
+  }
+  #overview .capa-card .gsap-icon {
+    width: 2.35rem !important;
+  }
+  #overview .capa-card .capa-performance-icon {
+    width: 1.55rem !important;
+  }
+  #overview .capa-card-arrow-wrap {
+    flex: 0 0 0.9rem;
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+  #overview .capa-card-arrow {
+    width: 0.55rem;
   }
 }
 
@@ -895,7 +1626,7 @@ body[data-palette="dark1"] .hero-heading {
 }
 
 .nav-docked .hero-navigation-link {
- color: var(--ink-fixed);
+ color: var(--ink-fixed) !important;
 }
 
 .hero-navigation-link.w--current {
@@ -904,6 +1635,25 @@ body[data-palette="dark1"] .hero-heading {
 
 .nav-docked .hero-navigation-link.w--current {
  color: var(--ink-fixed) !important;
+}
+
+/* Docked menu labels always sit on fixed light chips. Scroll animations can
+   otherwise leave a palette colour inline and wash the labels out. */
+body.nav-docked .nav-menu-item .hero-navigation-link,
+body.nav-docked .nav-menu-item .hero-navigation-link.w--current {
+  color: var(--ink-fixed) !important;
+  -webkit-text-fill-color: var(--ink-fixed) !important;
+  font-weight: 400 !important;
+}
+
+/* The hero issues card is animated with transforms. On restored scroll
+   positions GSAP can occasionally leave the shrunken card in the viewport
+   after its section has ended. The lifecycle class below is controlled by a
+   geometry check independent of the animation engine. */
+body.hero-passed .hero-card-3 {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .nav-item-icon {
@@ -1094,7 +1844,7 @@ body[data-palette="dark1"] .hero-heading {
 }
 
 
-</style></div><div data-flip-origin="" class="nesh-logo-preload-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3527 747" fill="none" class="nesh-logo-preload-svg"><path d="M 608.00 731.00 H 60.00 V 16.00 H 602.00 V 163.00 H 240.00 V 290.00 H 552.00 V 437.00 H 240.00 V 584.00 H 608.00 Z" fill="currentColor" class="nesh-logo-letter"></path><path d="M 1059.00 731.00 H 702.00 V 16.00 H 1049.00 Q 1276.00 16.00 1276.00 196.00 Q 1276.00 310.00 1165.00 348.00 V 350.00 Q 1227.00 361.00 1265.50 403.00 Q 1304.00 445.00 1304.00 520.00 Q 1304.00 731.00 1059.00 731.00 Z M 882.00 305.00 H 1002.00 Q 1045.00 305.00 1068.50 290.00 Q 1092.00 275.00 1092.00 234.00 Q 1092.00 193.00 1068.50 178.00 Q 1045.00 163.00 1002.00 163.00 H 882.00 Z M 882.00 584.00 H 1007.00 Q 1066.00 584.00 1093.00 565.50 Q 1120.00 547.00 1120.00 499.00 Q 1120.00 451.00 1093.00 433.00 Q 1066.00 415.00 1007.00 415.00 H 882.00 Z" fill="currentColor" class="nesh-logo-letter"></path><path d="M 1704.00 747.00 Q 1539.00 747.00 1450.50 644.50 Q 1362.00 542.00 1362.00 376.00 Q 1362.00 207.00 1453.00 103.50 Q 1544.00 0.00 1709.00 0.00 Q 1851.00 0.00 1931.50 76.50 Q 2012.00 153.00 2025.00 282.00 H 1841.00 Q 1830.00 217.00 1798.50 182.00 Q 1767.00 147.00 1701.00 147.00 Q 1617.00 147.00 1581.50 205.50 Q 1546.00 264.00 1546.00 373.00 Q 1546.00 482.00 1581.50 541.00 Q 1617.00 600.00 1701.00 600.00 Q 1768.00 600.00 1799.50 564.50 Q 1831.00 529.00 1841.00 463.00 H 2025.00 Q 2013.00 591.00 1930.00 669.00 Q 1847.00 747.00 1704.00 747.00 Z" fill="currentColor" class="nesh-logo-letter"></path><path d="M 2287.00 731.00 H 2107.00 V 16.00 H 2287.00 V 460.00 H 2289.00 L 2562.00 16.00 H 2742.00 V 731.00 H 2562.00 V 287.00 H 2560.00 Z" fill="currentColor" class="nesh-logo-letter"></path><path d="M 3042.00 731.00 H 2862.00 V 16.00 H 3042.00 V 296.00 H 3287.00 V 16.00 H 3467.00 V 731.00 H 3287.00 V 443.00 H 3042.00 Z" fill="currentColor" class="nesh-logo-letter"></path></svg></div><header data-tl-desktop="" data-tl-type="trigger" data-tl-trigger=".hero" data-tl-start="53% top" data-tl-from="{'zIndex': 2}" data-tl-to="{'zIndex': 100, 'duration': 0.1}" class="navigation"><div class="nav-container"><div data-tl-desktop="" data-tl-type="trigger" data-tl-trigger=".hero" data-tl-start="top 70%" class="profile-img-wrap"><div class="profile-img-item"><img class="hero-profile-img" src="images/oleg-evsin-hero-v5.png" data-tl-trigger=".hero" alt="Адвокат Олег Евсин" data-tl-end="70% top" data-tl-desktop="" data-tl-type="scroll" data-tl-to="{'filter': 'blur(90px)', 'opacity': 0.3}" data-tl-start="top top" sizes="100vw" loading="lazy" data-tl-from="{'filter': 'blur(0px)', 'opacity': 1}" fetchpriority="high" srcset="images/oleg-evsin-hero-v5.png 1024w"></div></div><div id="w-node-_5e7c5502-ddba-215f-98c3-2549ffbe61a2-be2d4114" class="nav-top-layout"><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="35% top" data-tl-end="39% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-top-bg"></div><div class="nav-top-item"><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="42% top" data-tl-end="44% top" data-tl-from="{'color' : '#7BBBFF', 'backgroundColor': 'transparent'}" data-tl-to="{'color' : '#000', 'backgroundColor': '#7BBBFF'}" class="nav-logo"><div class="nav-logo-item"><div data-flip-trigger=".hero" data-flip-start="top top" data-flip-end="44% top" class="nesh-logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3527 747" fill="none" class="nesh-logo-svg"><path d="M 608.00 731.00 H 60.00 V 16.00 H 602.00 V 163.00 H 240.00 V 290.00 H 552.00 V 437.00 H 240.00 V 584.00 H 608.00 Z" fill="currentColor"></path><path d="M 1059.00 731.00 H 702.00 V 16.00 H 1049.00 Q 1276.00 16.00 1276.00 196.00 Q 1276.00 310.00 1165.00 348.00 V 350.00 Q 1227.00 361.00 1265.50 403.00 Q 1304.00 445.00 1304.00 520.00 Q 1304.00 731.00 1059.00 731.00 Z M 882.00 305.00 H 1002.00 Q 1045.00 305.00 1068.50 290.00 Q 1092.00 275.00 1092.00 234.00 Q 1092.00 193.00 1068.50 178.00 Q 1045.00 163.00 1002.00 163.00 H 882.00 Z M 882.00 584.00 H 1007.00 Q 1066.00 584.00 1093.00 565.50 Q 1120.00 547.00 1120.00 499.00 Q 1120.00 451.00 1093.00 433.00 Q 1066.00 415.00 1007.00 415.00 H 882.00 Z" fill="currentColor"></path><path d="M 1704.00 747.00 Q 1539.00 747.00 1450.50 644.50 Q 1362.00 542.00 1362.00 376.00 Q 1362.00 207.00 1453.00 103.50 Q 1544.00 0.00 1709.00 0.00 Q 1851.00 0.00 1931.50 76.50 Q 2012.00 153.00 2025.00 282.00 H 1841.00 Q 1830.00 217.00 1798.50 182.00 Q 1767.00 147.00 1701.00 147.00 Q 1617.00 147.00 1581.50 205.50 Q 1546.00 264.00 1546.00 373.00 Q 1546.00 482.00 1581.50 541.00 Q 1617.00 600.00 1701.00 600.00 Q 1768.00 600.00 1799.50 564.50 Q 1831.00 529.00 1841.00 463.00 H 2025.00 Q 2013.00 591.00 1930.00 669.00 Q 1847.00 747.00 1704.00 747.00 Z" fill="currentColor"></path><path d="M 2287.00 731.00 H 2107.00 V 16.00 H 2287.00 V 460.00 H 2289.00 L 2562.00 16.00 H 2742.00 V 731.00 H 2562.00 V 287.00 H 2560.00 Z" fill="currentColor"></path><path d="M 3042.00 731.00 H 2862.00 V 16.00 H 3042.00 V 296.00 H 3287.00 V 16.00 H 3467.00 V 731.00 H 3287.00 V 443.00 H 3042.00 Z" fill="currentColor"></path></svg><div class="nesh-copyright-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 9 9" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="2% top" data-tl-end="5% top" data-tl-from="{'opacity': 0}" data-tl-to="{'opacity' : 1}" data-tl-desktop="" class="nesh-copyright-icon"><path d="M0.343933 5.97697C0.114645 5.44236 0 4.8828 0 4.29829C0 3.71378 0.114645 3.156 0.343933 2.62495C0.573221 2.0939 0.883118 1.6377 1.27362 1.25634C1.66413 0.871419 2.12808 0.56669 2.66547 0.342152C3.20645 0.114051 3.7743 0 4.36901 0C4.96373 0 5.52978 0.114051 6.06718 0.342152C6.60815 0.56669 7.0739 0.871419 7.4644 1.25634C7.85491 1.6377 8.1648 2.0939 8.39409 2.62495C8.62338 3.156 8.73802 3.71378 8.73802 4.29829C8.73802 5.07526 8.54277 5.7952 8.15226 6.45812C7.76176 7.11748 7.23153 7.63962 6.56158 8.02454C5.89163 8.40946 5.16077 8.60192 4.36901 8.60192C3.7743 8.60192 3.20645 8.48787 2.66547 8.25977C2.12808 8.03523 1.66413 7.73228 1.27362 7.35093C0.883118 6.96601 0.573221 6.50802 0.343933 5.97697ZM1.08017 4.29829C1.08017 4.7438 1.16615 5.16971 1.33811 5.57601C1.51008 5.97875 1.74295 6.32625 2.03672 6.61851C2.3305 6.91076 2.6798 7.14421 3.08464 7.31885C3.49306 7.48993 3.92118 7.57546 4.36901 7.57546C4.81684 7.57546 5.24317 7.48993 5.64801 7.31885C6.05643 7.14421 6.40752 6.91076 6.7013 6.61851C6.99507 6.32625 7.22794 5.97875 7.39991 5.57601C7.57546 5.16971 7.66324 4.7438 7.66324 4.29829C7.66324 3.85278 7.57546 3.42865 7.39991 3.02591C7.22794 2.6196 6.99507 2.27032 6.7013 1.97807C6.40752 1.68581 6.05643 1.45415 5.64801 1.28307C5.24317 1.11199 4.81684 1.02646 4.36901 1.02646C3.77071 1.02646 3.21899 1.17258 2.71384 1.46484C2.20869 1.75353 1.80922 2.14914 1.51545 2.65168C1.22526 3.15422 1.08017 3.70309 1.08017 4.29829ZM2.64398 6.58643V1.99945H4.91178C5.33811 1.99945 5.691 2.12954 5.97045 2.38972C6.25347 2.64633 6.39499 2.97958 6.39499 3.38945C6.39499 3.71378 6.29109 3.98821 6.0833 4.21275C5.87909 4.43729 5.62651 4.56916 5.32557 4.60836L5.26109 4.61905L6.34125 6.56505H5.0515L4.11644 4.75805H3.84237V6.58643H2.64398ZM3.84237 3.82783H4.74519C4.88491 3.82783 4.99597 3.79219 5.07837 3.72091C5.16436 3.64962 5.20735 3.55161 5.20735 3.42687C5.20735 3.29143 5.16615 3.18629 5.08375 3.11145C5.00135 3.0366 4.88849 2.99918 4.74519 2.99918H3.84237V3.82783Z" fill="currentColor"></path></svg></div></div></div></div><div class="social-wrap"><a class="social-link w-inline-block" data-tl-trigger=".hero" data-tl-end="46% top" href="tel:+79015068877" data-tl-type="scroll" data-tl-to="{'scale' : 1, 'opacity' : 1}" aria-label="Позвонить" data-tl-start="44% top" data-tl-from="{'scale' : 0.3, 'opacity' : 0}"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 15 15" fill="none" class="instagram"><path d="M2.41049 0C1.07921 0 0 1.07921 0 2.41049V12.0525C0 13.3837 1.07921 14.463 2.41049 14.463H12.0525C13.3837 14.463 14.463 13.3837 14.463 12.0525V2.41049C14.463 1.07921 13.3837 0 12.0525 0H2.41049Z" fill="currentColor" class="social-bg-path"></path><path d="M11.061 8.827 C10.487 8.827 9.937 8.735 9.423 8.565 C9.262 8.515 9.083 8.552 8.955 8.680 L7.945 9.690 C6.647 9.029 5.582 7.969 4.921 6.666 L5.931 5.651 C6.059 5.532 6.096 5.353 6.045 5.193 C5.876 4.683 5.784 4.133 5.784 3.559 C5.784 3.306 5.577 3.100 5.325 3.100 L3.719 3.100 C3.467 3.100 3.260 3.306 3.260 3.559 C3.260 7.868 6.752 11.360 11.061 11.360 C11.313 11.360 11.520 11.154 11.520 10.901 L11.520 9.295 C11.520 9.043 11.313 8.836 11.061 8.836 Z" fill="currentColor" class="social-path-white"></path></svg></a><a class="social-link w-inline-block" data-tl-trigger=".hero" data-tl-end="48% top" href="https://max.ru/+79015068877" data-tl-type="scroll" data-tl-to="{'scale' : 1, 'opacity' : 1}" aria-label="Написать в MAX" data-tl-start="46% top" target="_blank" data-tl-from="{'scale' : 0.3, 'opacity' : 0}"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 15 15" fill="none" class="instagram"><path d="M2.41049 0C1.07921 0 0 1.07921 0 2.41049V12.0525C0 13.3837 1.07921 14.463 2.41049 14.463H12.0525C13.3837 14.463 14.463 13.3837 14.463 12.0525V2.41049C14.463 1.07921 13.3837 0 12.0525 0H2.41049Z" fill="currentColor" class="social-bg-path"></path><path d="M4.086 3.926 L10.694 3.926 L10.694 8.882 L4.569 8.882 L4.086 9.365 L4.086 3.926 M4.086 3.100 C3.632 3.100 3.264 3.472 3.264 3.926 L3.260 11.360 L4.912 9.708 L10.694 9.708 C11.148 9.708 11.520 9.336 11.520 8.882 L11.520 3.926 C11.520 3.472 11.148 3.100 10.694 3.100 L4.086 3.100 Z" fill="currentColor" class="social-path-white"></path></svg></a></div><div class="mobile-menu-wrap"><a href="#contact" class="nav-button-mobile w-button">Звонок</a><div class="mobile-menu"><div class="mobile-menu-icons"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 7" fill="none" class="mobile-menu-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.6 0H11.2C9.8744 0 8.8 1.00725 8.8 2.25V4.5C8.8 5.74275 9.8744 6.75 11.2 6.75H13.6C14.9256 6.75 16 5.74275 16 4.5V2.25C16 1.00725 14.9256 0 13.6 0ZM7.2 2.25V4.5C7.2 5.74275 6.1256 6.75 4.8 6.75H2.4C1.0744 6.75 0 5.74275 0 4.5V2.25C0 1.00725 1.0744 0 2.4 0H4.8C6.1256 0 7.2 1.00725 7.2 2.25Z" fill="currentColor"></path></svg></div><div class="mobile-menu-icons"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 7" fill="none" class="mobile-menu-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.6 0H11.2C9.8744 0 8.8 1.00725 8.8 2.25V4.5C8.8 5.74275 9.8744 6.75 11.2 6.75H13.6C14.9256 6.75 16 5.74275 16 4.5V2.25C16 1.00725 14.9256 0 13.6 0ZM7.2 2.25V4.5C7.2 5.74275 6.1256 6.75 4.8 6.75H2.4C1.0744 6.75 0 5.74275 0 4.5V2.25C0 1.00725 1.0744 0 2.4 0H4.8C6.1256 0 7.2 1.00725 7.2 2.25Z" fill="currentColor"></path></svg></div></div></div></div><p data-tl-to="{ 'y': '0%'}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="38% top" data-tl-end="42% top" data-tl-split="lines" data-tl-from="{ 'y': '100%'}" class="nav-top-text">Если после развода не получается договориться, с кем останется ребёнок — помогаю через переговоры или в суде. Работаю и со стороны мамы, и со стороны папы. Очно и дистанционно по всей России.</p></div><div class="nav-stats-wrap"><div id="stats_projects" class="nav-stats-card"><div data-flip-end="40% top" data-flip-trigger=".hero" data-flip-start="top top" class="nav-webflow-bg"></div><div class="nav-webflow-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 91 57" fill="none" data-flip-id="icon" data-flip-trigger=".hero" data-flip-start="top top" data-flip-end="40% top" class="nav-webflow-icon"><path d="M42 6H49V50H42Z" fill="currentColor"></path><path d="M30 50H61L67 57H24Z" fill="currentColor"></path><path d="M6 8H85V14H6Z" fill="currentColor"></path><path d="M13 14L11 34H19L17 14Z" fill="currentColor"></path><path d="M15 34L23 40L15 46L7 40Z" fill="currentColor"></path><path d="M78 14L80 34H72L74 14Z" fill="currentColor"></path><path d="M76 34L84 40L76 46L68 40Z" fill="currentColor"></path></svg></div><div class="nav-webflow-text-wrap"><p class="nav-webflow-text" data-flip-start="top top" data-tl-trigger=".hero" data-tl-end="22% top" data-tl-type="scroll" data-tl-to="{'color': 'black'}" data-tl-start="20% top" id="projects_start_text" data-flip-trigger=".hero" data-tl-from="{'color': 'white'}" data-flip-end="40% top">2100+<br>Дел</p></div></div><div data-tl-to="{'opacity' : 1}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="39% top" data-tl-end="41% top" data-tl-from="{'opacity' : 0}" class="nav-stats-sep"></div><div id="stats_years" class="nav-stats-card"><div data-flip-end="40% top" data-flip-trigger=".hero" data-flip-start="top top" class="nav-experience-bg"></div><div id="yrs_big_text" class="nav-experience-numb-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 41 28" fill="none" data-flip-trigger=".hero" data-flip-start="top top" data-flip-end="40% top" class="nav-experience-numb"><text x="20.5" y="23" text-anchor="middle" font-family="Tr 3 A, Arial, sans-serif" font-size="23" font-weight="700" fill="currentColor">30</text></svg></div><div id="yrs_small_text_end" class="nav-experience-text-wrap"><p class="nav-experience-text" data-flip-start="top top" data-tl-trigger=".hero" data-tl-end="22% top" data-tl-type="scroll" data-tl-to="{'color': 'black'}" data-tl-start="20% top" data-flip-trigger=".hero" data-tl-from="{'color': 'white'}" data-flip-end="40% top">лет <br>опыта</p></div></div><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="34% top" data-tl-end="38% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="nav-top-bg"></div></div><div class="nav-menu-wrap"><nav class="nav-menu"><div data-flip-end="30% top" data-flip-trigger=".hero" data-flip-start="7% top" class="nav-menu-item"><a class="nav-link w-inline-block w--current" data-tl-trigger=".hero" data-tl-desktop="" href="#hero" data-tl-type="trigger" data-tl-to="{'scale': 1}" aria-label="hero" data-tl-start="50% top" data-tl-from="{'scale': 0}"></a><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="28% top" data-tl-end="30% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-item-bg"></div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 16" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="29% top" data-tl-end="31% top" data-tl-from="{'scale' : 0.2, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-desktop="" class="nav-item-icon"><path d="M7.99108 15.9986C6.2723 15.9986 4.55352 16.0026 2.83474 15.9971C1.39106 15.9925 0.265085 15.0252 0.0285645 13.5918C0.00300833 13.438 0.00150497 13.2786 0.00150497 13.1218C1.66682e-06 10.9077 0.00150503 8.69304 1.72796e-06 6.47893C-0.00100048 5.42887 0.433956 4.61586 1.29335 4.02526C2.96953 2.87282 4.64422 1.71785 6.3189 0.563387C7.39978 -0.182045 8.58689 -0.189106 9.66225 0.550274C11.349 1.70978 13.0342 2.8708 14.7189 4.03333C15.5637 4.61636 15.9977 5.42232 15.9982 6.45725C15.9992 8.68396 16.0022 10.9112 15.9972 13.1379C15.9937 14.598 15.0406 15.7262 13.6154 15.9678C13.4441 15.9971 13.2667 15.9976 13.0923 15.9981C11.3921 16.0001 9.69232 15.9991 7.99208 15.9991L7.99108 15.9986ZM8.0021 13.1858C8.62648 13.1858 9.25035 13.1868 9.87472 13.1843C9.96091 13.1843 10.0521 13.1803 10.1328 13.153C10.3042 13.095 10.3954 12.9619 10.3964 12.7813C10.3974 12.6003 10.3062 12.4676 10.1363 12.4071C10.0621 12.3804 9.97695 12.3758 9.89677 12.3758C8.62948 12.3738 7.3622 12.3743 6.09541 12.3758C6.02726 12.3758 5.9571 12.3809 5.89196 12.399C5.60533 12.4787 5.49208 12.8358 5.70705 13.039C5.79976 13.1263 5.96061 13.1772 6.0924 13.1803C6.7288 13.1944 7.3657 13.1868 8.0026 13.1868L8.0021 13.1858Z" fill="currentColor" fill-opacity="0.9"></path></svg><a data-link-id="home" href="#hero" data-button-hover="" class="hero-navigation-link w--current">Главная</a></div><div data-flip-end="33% top" data-flip-trigger=".hero" data-flip-start="5% top" class="nav-menu-item"><a class="nav-link w-inline-block" data-tl-trigger=".hero" data-tl-desktop="" href="#overview" data-tl-type="trigger" data-tl-to="{'scale': 1}" aria-label="what you get" data-tl-start="50% top" data-tl-from="{'scale': 0}"></a><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 16" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="32% top" data-tl-end="34% top" data-tl-from="{'scale' : 0.2, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-desktop="" class="nav-item-icon"><path d="M3.02695 10.5054C2.68978 10.3628 2.30764 10.3628 1.97048 10.5054L0.89209 10.9614C0.588053 11.0899 0.588054 11.6259 0.89209 11.7545L7.5656 14.5764C7.8456 14.6948 8.1492 14.6948 8.4292 14.5764L15.1027 11.7545C15.4067 11.6259 15.4067 11.0899 15.1027 10.9614L14.0247 10.5055C13.6875 10.3629 13.3053 10.3629 12.9682 10.5055L8.588 12.3577C8.2052 12.5196 7.7902 12.5196 7.4074 12.3577L3.02695 10.5054Z" fill="currentColor" fill-opacity="0.9"></path><path d="M3.0269 6.80226C2.68973 6.65966 2.30758 6.65966 1.97042 6.80226L0.89209 7.25819C0.588053 7.38679 0.588054 7.92272 0.89209 8.05126L7.5656 10.8732C7.8456 10.9917 8.1492 10.9917 8.4292 10.8732L15.1027 8.05126C15.4067 7.92272 15.4067 7.38679 15.1027 7.25819L14.0246 6.80232C13.6874 6.65976 13.3053 6.65976 12.9681 6.80232L8.58793 8.65452C8.20513 8.81639 7.79013 8.81639 7.40733 8.65452L3.0269 6.80226Z" fill="currentColor" fill-opacity="0.9"></path><path d="M7.45662 0.795795C7.84082 0.630568 8.25735 0.630568 8.64162 0.795795L14.7775 3.43428C15.1947 3.61367 15.1947 4.36142 14.7775 4.5408L8.64162 7.17928C8.25735 7.34454 7.84082 7.34454 7.45662 7.17928L1.32069 4.5408C0.903521 4.36142 0.903521 3.61367 1.32069 3.43428L7.45662 0.795795Z" fill="currentColor" fill-opacity="0.9"></path></svg><a data-button-hover="" data-link-id="what-you-get" href="#overview" class="hero-navigation-link">Преимущества</a><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="31% top" data-tl-end="33% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-item-bg"></div></div><div data-flip-end="34% top" data-flip-trigger=".hero" data-flip-start="3% top" class="nav-menu-item"><a class="nav-link w-inline-block" data-tl-trigger=".hero" data-tl-desktop="" href="#services" data-tl-type="trigger" data-tl-to="{'scale': 1}" aria-label="services" data-tl-start="50% top" data-tl-from="{'scale': 0}"></a><a data-button-hover="" data-link-id="services" href="#services_column" class="hero-navigation-link">Развилка</a><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 10 16" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="33% top" data-tl-end="35% top" data-tl-from="{'scale' : 0.2, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-desktop="" class="nav-item-icon services-icon"><path d="M3.4666 9.36814C2.71166 9.36814 2.0262 9.35713 1.34073 9.37035C0.342642 9.39018 -0.111245 8.89651 0.0230685 7.99513C0.368116 5.67444 0.773373 3.36037 1.13926 1.04189C1.25042 0.338853 1.65336 0.0104747 2.38282 0.0104747C3.57775 0.0104747 4.775 -0.0181757 5.96761 0.0192902C7.0097 0.0523484 7.38948 0.596706 7.06296 1.56641C6.62992 2.85348 6.15519 4.12732 5.63183 5.5929C6.66234 5.5929 7.56548 5.57527 8.46631 5.59731C9.95302 5.63477 10.3884 6.37748 9.64271 7.61165C8.13979 10.091 6.61371 12.555 5.10846 15.0321C4.74026 15.6382 4.33269 16.1958 3.48512 15.9335C2.6885 15.6867 2.68155 15.0365 2.77187 14.3842C2.9965 12.7533 3.22344 11.1246 3.46891 9.36814H3.4666Z" fill="currentColor"></path></svg><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="32% top" data-tl-end="34% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-item-bg"></div></div><div data-flip-end="36% top" data-flip-trigger=".hero" data-flip-start="1% top" class="nav-menu-item"><a class="nav-link w-inline-block" data-tl-trigger=".hero" data-tl-desktop="" href="#faq" data-tl-type="trigger" data-tl-to="{'scale': 1}" aria-label="faq" data-tl-start="50% top" data-tl-from="{'scale': 0}"></a><a data-button-hover="" data-link-id="faq" href="#faq" class="hero-navigation-link">Вопросы</a><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 16" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="35% top" data-tl-end="37% top" data-tl-from="{'scale' : 0.2, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-desktop="" class="nav-item-icon"><path d="M16 7.49851V8.46742C15.9912 8.51752 15.9804 8.56761 15.9733 8.61771C15.9299 8.93163 15.9024 9.2489 15.8423 9.55991C15.2206 12.7806 12.6152 15.3266 9.38017 15.8773C9.08934 15.9269 8.79559 15.9595 8.50309 16H7.50333C7.46912 15.9912 7.4349 15.9766 7.40027 15.9745C6.60581 15.9186 5.84139 15.7353 5.09783 15.4519C1.69424 14.154 -0.441297 10.5372 0.0773575 6.9316C0.351915 5.02299 1.17725 3.38907 2.61263 2.09829C4.51909 0.382968 6.76478 -0.278283 9.29797 0.105777C10.8214 0.33663 12.162 0.992454 13.3099 2.0219C14.6894 3.25882 15.5514 4.79214 15.8769 6.6206C15.9286 6.91156 15.9595 7.20587 16 7.49851ZM7.34227 9.09402C7.34227 9.18795 7.3381 9.28188 7.34311 9.37497C7.36063 9.69934 7.61558 9.964 7.9377 9.99615C8.26275 10.0287 8.57945 9.80829 8.64871 9.48977C8.67041 9.38958 8.67166 9.28188 8.6654 9.17877C8.64245 8.7993 8.80852 8.56511 9.15443 8.39687C10.0353 7.96898 10.5477 7.24762 10.6503 6.2762C10.8577 4.31457 8.96458 2.83886 7.10235 3.4926C6.0471 3.8633 5.31564 4.90861 5.34151 6.00986C5.34985 6.36595 5.62107 6.64648 5.9699 6.65984C6.33375 6.67361 6.63251 6.41646 6.66381 6.06204C6.67132 5.97897 6.67591 5.89589 6.68676 5.81324C6.7869 5.02717 7.57427 4.4995 8.33618 4.70656C8.89698 4.85893 9.27711 5.31939 9.33135 5.91301C9.38017 6.4486 9.06597 6.97293 8.54148 7.21672C7.74159 7.58826 7.34853 8.21695 7.34227 9.09402ZM8.66582 11.9966C8.66332 11.6238 8.3729 11.3358 8.00071 11.3366C7.62976 11.3374 7.34019 11.6297 7.34144 12.002C7.34311 12.374 7.6331 12.662 8.00655 12.662C8.37666 12.662 8.66832 12.3673 8.66582 11.9966Z" fill="currentColor" fill-opacity="0.9"></path></svg><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="34% top" data-tl-end="36% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-item-bg"></div></div><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="31% top" data-tl-end="35% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-menu-bg"></div></nav><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="33% top" data-tl-end="38% top" data-tl-from="{'opacity' : 0}" data-tl-to="{'opacity' : 1}" class="nav-email-wrap"><div class="nav-email-item"><p class="email-text">evsinadvokat@yandex.ru</p><div class="clipboard-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 14 14" fill="none" class="clipboard-icon"><rect width="14" height="14" rx="7" fill="currentColor"></rect><path d="M6.94231 9.43099L10.2791 6.23416C10.5736 5.95167 10.5736 5.49388 10.2793 5.21194C10.1378 5.07602 9.94541 5 9.74562 5C9.54555 4.99973 9.35347 5.07602 9.21162 5.21166L6.54359 7.76803C6.50763 7.80249 6.45911 7.82163 6.4083 7.82163C6.35807 7.82163 6.30955 7.80222 6.27359 7.76803L5.28806 6.82375C5.14678 6.68811 4.95499 6.61182 4.75491 6.61182C4.55455 6.61182 4.36276 6.68811 4.22119 6.82375C4.07934 6.95939 4 7.14316 4 7.33514C4 7.52684 4.07934 7.71088 4.22119 7.84652L5.87487 9.43099C6.16941 9.71348 6.64748 9.71348 6.94231 9.43099Z" fill="currentColor" class="text-color-white"></path></svg><p>Скопировать</p></div><div class="clipboard-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 13 13" fill="none" class="copy-email-icon"><path d="M0.000482947 8.26401C0.000482947 7.10632 -0.000996063 5.94864 0.00122242 4.79096C0.00233167 4.18199 0.358029 3.71278 0.917458 3.58299C1.02875 3.55711 1.14596 3.54861 1.26058 3.54861C3.57188 3.54676 5.88317 3.54639 8.19447 3.5475C8.95208 3.5475 9.45494 4.04777 9.45531 4.80316C9.45679 7.11853 9.45679 9.43426 9.45531 11.7496C9.45494 12.4973 8.95134 12.9994 8.20297 12.9997C5.88724 13.0012 3.57114 13.0012 1.25541 12.9997C0.501861 12.9994 0.00233168 12.4947 0.00159218 11.737C0.000482937 10.5794 0.00159218 9.42169 0.00159218 8.26401H0.000482947Z" fill="currentColor" fill-opacity="0.9"></path><path d="M8.27693 0.000639714C9.43942 0.000639714 10.6019 -0.00120904 11.7644 0.00137919C12.366 0.00248844 12.8307 0.355228 12.9627 0.911329C12.9901 1.02669 12.9994 1.14871 12.9994 1.26777C13.0016 3.57388 13.0016 5.88037 13.0005 8.18649C13.0005 8.95261 12.5013 9.4514 11.7367 9.45399C11.5843 9.45436 11.4324 9.4551 11.28 9.45399C10.8777 9.45029 10.6344 9.2081 10.6341 8.80434C10.633 7.36047 10.6359 5.91698 10.6326 4.47311C10.6307 3.62713 10.2495 3.00041 9.51004 2.59405C9.20056 2.42397 8.86261 2.36592 8.51024 2.36666C7.09411 2.36962 5.6776 2.36777 4.26147 2.36777C3.76674 2.36777 3.54305 2.14592 3.54711 1.64861C3.54896 1.40938 3.53676 1.16461 3.58076 0.932035C3.68762 0.369278 4.17754 0.00248844 4.7891 0.00174895C5.95159 -9.97919e-05 7.11407 0.00100944 8.27656 0.00137919L8.27693 0.000639714Z" fill="currentColor" fill-opacity="0.9"></path></svg></div></div></div><div data-flip-end="35% top" data-flip-target=".hero" data-flip-start="5% top" class="nav-button-wrap"><a data-button-hover="" href="#contact" class="nav-button w-inline-block"><p class="button-text">Получить консультацию</p></a><a data-button-hover="" href="#services_column" class="nav-button-secondary w-inline-block"><p class="button-text">Мама или папа?</p></a></div></div></div></header><main data-tl-desktop="" data-tl-type="trigger" data-tl-trigger=".hero" data-tl-start="53% top" data-tl-from="{'zIndex': 20}" data-tl-to="{'zIndex': 99, 'duration': 0.1}" class="main-wrap"><section id="hero" data-flip-start-trigger="" data-flip-start="top top" class="hero"><div class="hero-sticky"><div class="nesh-logo-preload"><div data-flip-origin="" class="nesh-logo-wrap"><div class="nesh-logo-ghost-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3527 747" fill="none" data-flip-target="" class="nesh-logo-ghost"><path d="M 608.00 731.00 H 60.00 V 16.00 H 602.00 V 163.00 H 240.00 V 290.00 H 552.00 V 437.00 H 240.00 V 584.00 H 608.00 Z" fill="currentColor"></path><path d="M 1059.00 731.00 H 702.00 V 16.00 H 1049.00 Q 1276.00 16.00 1276.00 196.00 Q 1276.00 310.00 1165.00 348.00 V 350.00 Q 1227.00 361.00 1265.50 403.00 Q 1304.00 445.00 1304.00 520.00 Q 1304.00 731.00 1059.00 731.00 Z M 882.00 305.00 H 1002.00 Q 1045.00 305.00 1068.50 290.00 Q 1092.00 275.00 1092.00 234.00 Q 1092.00 193.00 1068.50 178.00 Q 1045.00 163.00 1002.00 163.00 H 882.00 Z M 882.00 584.00 H 1007.00 Q 1066.00 584.00 1093.00 565.50 Q 1120.00 547.00 1120.00 499.00 Q 1120.00 451.00 1093.00 433.00 Q 1066.00 415.00 1007.00 415.00 H 882.00 Z" fill="currentColor"></path><path d="M 1704.00 747.00 Q 1539.00 747.00 1450.50 644.50 Q 1362.00 542.00 1362.00 376.00 Q 1362.00 207.00 1453.00 103.50 Q 1544.00 0.00 1709.00 0.00 Q 1851.00 0.00 1931.50 76.50 Q 2012.00 153.00 2025.00 282.00 H 1841.00 Q 1830.00 217.00 1798.50 182.00 Q 1767.00 147.00 1701.00 147.00 Q 1617.00 147.00 1581.50 205.50 Q 1546.00 264.00 1546.00 373.00 Q 1546.00 482.00 1581.50 541.00 Q 1617.00 600.00 1701.00 600.00 Q 1768.00 600.00 1799.50 564.50 Q 1831.00 529.00 1841.00 463.00 H 2025.00 Q 2013.00 591.00 1930.00 669.00 Q 1847.00 747.00 1704.00 747.00 Z" fill="currentColor"></path><path d="M 2287.00 731.00 H 2107.00 V 16.00 H 2287.00 V 460.00 H 2289.00 L 2562.00 16.00 H 2742.00 V 731.00 H 2562.00 V 287.00 H 2560.00 Z" fill="currentColor"></path><path d="M 3042.00 731.00 H 2862.00 V 16.00 H 3042.00 V 296.00 H 3287.00 V 16.00 H 3467.00 V 731.00 H 3287.00 V 443.00 H 3042.00 Z" fill="currentColor"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 9 9" fill="none" class="nesh-copyright-icon-ghost"><path d="M0.343933 5.97697C0.114645 5.44236 0 4.8828 0 4.29829C0 3.71378 0.114645 3.156 0.343933 2.62495C0.573221 2.0939 0.883118 1.6377 1.27362 1.25634C1.66413 0.871419 2.12808 0.56669 2.66547 0.342152C3.20645 0.114051 3.7743 0 4.36901 0C4.96373 0 5.52978 0.114051 6.06718 0.342152C6.60815 0.56669 7.0739 0.871419 7.4644 1.25634C7.85491 1.6377 8.1648 2.0939 8.39409 2.62495C8.62338 3.156 8.73802 3.71378 8.73802 4.29829C8.73802 5.07526 8.54277 5.7952 8.15226 6.45812C7.76176 7.11748 7.23153 7.63962 6.56158 8.02454C5.89163 8.40946 5.16077 8.60192 4.36901 8.60192C3.7743 8.60192 3.20645 8.48787 2.66547 8.25977C2.12808 8.03523 1.66413 7.73228 1.27362 7.35093C0.883118 6.96601 0.573221 6.50802 0.343933 5.97697ZM1.08017 4.29829C1.08017 4.7438 1.16615 5.16971 1.33811 5.57601C1.51008 5.97875 1.74295 6.32625 2.03672 6.61851C2.3305 6.91076 2.6798 7.14421 3.08464 7.31885C3.49306 7.48993 3.92118 7.57546 4.36901 7.57546C4.81684 7.57546 5.24317 7.48993 5.64801 7.31885C6.05643 7.14421 6.40752 6.91076 6.7013 6.61851C6.99507 6.32625 7.22794 5.97875 7.39991 5.57601C7.57546 5.16971 7.66324 4.7438 7.66324 4.29829C7.66324 3.85278 7.57546 3.42865 7.39991 3.02591C7.22794 2.6196 6.99507 2.27032 6.7013 1.97807C6.40752 1.68581 6.05643 1.45415 5.64801 1.28307C5.24317 1.11199 4.81684 1.02646 4.36901 1.02646C3.77071 1.02646 3.21899 1.17258 2.71384 1.46484C2.20869 1.75353 1.80922 2.14914 1.51545 2.65168C1.22526 3.15422 1.08017 3.70309 1.08017 4.29829ZM2.64398 6.58643V1.99945H4.91178C5.33811 1.99945 5.691 2.12954 5.97045 2.38972C6.25347 2.64633 6.39499 2.97958 6.39499 3.38945C6.39499 3.71378 6.29109 3.98821 6.0833 4.21275C5.87909 4.43729 5.62651 4.56916 5.32557 4.60836L5.26109 4.61905L6.34125 6.56505H5.0515L4.11644 4.75805H3.84237V6.58643H2.64398ZM3.84237 3.82783H4.74519C4.88491 3.82783 4.99597 3.79219 5.07837 3.72091C5.16436 3.64962 5.20735 3.55161 5.20735 3.42687C5.20735 3.29143 5.16615 3.18629 5.08375 3.11145C5.00135 3.0366 4.88849 2.99918 4.74519 2.99918H3.84237V3.82783Z" fill="currentColor"></path></svg></div></div><div class="hero-navigation-wrap"><div class="hero-links-ghost-wrapper"><div class="ghost-link-item"><div data-link-id="home" class="hero-link-ghost">главная</div></div></div><div class="hero-links-ghost-wrapper is-hero-right-nav-item"><div class="ghost-link-item"><div data-link-id="what-you-get" class="hero-link-ghost">преимущества</div></div><div data-tl-to="{'opacity': 0, 'x': '0vw', 'y': '1vw'}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="top top" data-tl-end="3% top" data-tl-from="{'opacity': 1, 'x': '0vw', 'y': '0vw'}" class="hero-navigation-sep"></div><div class="ghost-link-item"><div data-link-id="services" class="hero-link-ghost">услуги</div></div><div data-tl-to="{'opacity': 0, 'x': '0vw', 'y': '1vw'}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="top top" data-tl-end="1% top" data-tl-from="{'opacity': 1, 'x': '0vw', 'y': '0vw'}" class="hero-navigation-sep"></div><div class="ghost-link-item"><div data-link-id="faq" class="hero-link-ghost">вопросы</div></div></div></div></div><div class="hero-container"><p class="hero-left-text" data-tl-trigger=".hero" data-tl-split="lines" data-tl-end="10% top" data-tl-desktop="" data-tl-type="scroll" data-tl-to="{ 'y': '-100%'}" data-tl-start="5% top" data-tl-from="{ 'y': '0%'}">Адвокат Олег Евсин · вся Россия</p><div class="hero-content-layout"><h1 class="hero-heading">С кем останутся <br>дети</h1><div class="hero-buttons-wrap"><div class="hero-cta-button"><p class="button-text">Получить консультацию</p></div><div class="hero-button"><p class="button-text">Мама или папа?</p></div></div></div><p class="hero-right-text" data-tl-trigger=".hero" data-tl-split="lines" data-tl-end="10% top" data-tl-desktop="" data-tl-type="scroll" data-tl-to="{ 'y': '-100%'}" data-tl-start="5% top" data-tl-from="{ 'y': '0%'}">Если после развода не получается договориться, с кем останется ребёнок — помогаю через переговоры или в суде. Работаю и со стороны мамы, и со стороны папы. Очно и дистанционно по всей России.</p><div class="hero-cards-wrap"><div class="hero-cards-left"><div class="hero-card-2-wrap"><div data-flip-id="hero-card-2" class="hero-card-2"><div class="hero-card-2-bg"></div><div class="hero-webflow-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 91 57" fill="none" data-flip-id="icon" class="hero-webflow-icon"><path d="M42 6H49V50H42Z" fill="currentColor"></path><path d="M30 50H61L67 57H24Z" fill="currentColor"></path><path d="M6 8H85V14H6Z" fill="currentColor"></path><path d="M13 14L11 34H19L17 14Z" fill="currentColor"></path><path d="M15 34L23 40L15 46L7 40Z" fill="currentColor"></path><path d="M78 14L80 34H72L74 14Z" fill="currentColor"></path><path d="M76 34L84 40L76 46L68 40Z" fill="currentColor"></path></svg></div><div class="hero-c-projects-text-wrap"><p id="projects_start_text" data-flip-id="hero-card-2-text" class="hero-webflow-projects-text">2100+<br>Дел</p></div></div></div><div class="hero-card-1-wrap"><div class="hero-card-1"><div class="experience-bg"></div><div class="experience-number-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 41 28" fill="none"  class="experience-number"><text x="20.5" y="23" text-anchor="middle" font-family="Tr 3 A, Arial, sans-serif" font-size="23" font-weight="700" fill="currentColor">30</text></svg></div><div class="experience-text-wrap"><p id="yrs_small_text_start" class="experience-text">лет <br>опыта</p></div></div></div></div><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="5% top" data-tl-end="20% top" data-tl-from="{'scale': 1, 'opacity': 1, 'x': '0vw', 'y': '0vw'}" data-tl-to="{'scale': 0.3, 'opacity': 0, 'x': '-25vw', 'y': '-5vw'}" class="hero-card-3"><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Опыт</p></div><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Надёжность</p></div><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Стратегия</p></div><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Результат</p></div><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Этика</p></div></div></div></div><div class="mobile-hero-image-wrap"><img src="images/oleg-evsin-hero-v5.png" loading="lazy" fetchpriority="high" alt="Адвокат Олег Евсин" class="mobile-hero-image"></div></div></section><section id="overview" class="what_you_get_section"><div class="container"><div class="column flex-center text-center"><h2 class="h2-big h2-style">Пять причин <br>обратиться</h2><div data-tl-to="{   'width':'auto',   'opacity':1,   'duration':0.7,   'ease':'expo.inOut' }" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 100%" data-tl-from="{'width':'0vw','opacity':0}" class="label">Ключевые преимущества</div><p class="what_you_get-text">Глубокая <span data-connect="w" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> специализация и приём <span data-connect="seo" class="span" style="white-space:nowrap">&nbsp; &nbsp; &nbsp; &nbsp; </span> по всей России, <span data-connect="i" style="white-space:nowrap">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> честная оценка перспектив, <span data-connect="gsap" class="span" style="white-space:nowrap">&nbsp; &nbsp; &nbsp; &nbsp;</span> сопровождение дела до результата и <span data-connect="p" class="span" style="white-space:nowrap">&nbsp;</span></p><p class="what_you_get-text-mobile">Глубокая <br>специализация и <span data-connect="w-mobile" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> приём <span data-connect="seo-mobile" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> по всей России, <span data-connect="i-mobile" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> честная оценка перспектив, <span data-connect="gsap-mobile" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> сопровождение до результата и <span data-connect="p-mobile" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p><div class="capa-cards-wrap"><div data-connect-mobile="w-mobile" data-connect="w" data-origin="center left" data-anchor-pos="left center" data-origin-mobile="center center" data-anchor-pos-mobile="center center" class="capa-card"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 80%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 91 57" fill="none" data-var-hover="1.34" data-var-hover-mobile="2.04" class="webflow-icon"><path d="M42 6H49V50H42Z" fill="currentColor"></path><path d="M30 50H61L67 57H24Z" fill="currentColor"></path><path d="M6 8H85V14H6Z" fill="currentColor"></path><path d="M13 14L11 34H19L17 14Z" fill="currentColor"></path><path d="M15 34L23 40L15 46L7 40Z" fill="currentColor"></path><path d="M78 14L80 34H72L74 14Z" fill="currentColor"></path><path d="M76 34L84 40L76 46L68 40Z" fill="currentColor"></path></svg><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Только семейное право</h3><p class="capa-card-text">Не распыляюсь на другие категории дел - только семейные споры. Это позволяет глубже понимать практику судов именно по этой категории.</p></div></div></div></div><div data-connect-mobile="i-mobile" data-connect="i" data-origin="center center" data-anchor-pos="center center" class="capa-card"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 47%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 36 48" fill="none" data-var-hover="1.47" data-var-hover-mobile="2.111" class="capa-settings-icon"><path d="M18 47C18 47 4 29 4 18 A14 14 0 1 1 32 18 C32 29 18 47 18 47 Z" fill="currentColor"></path><circle cx="18" cy="17" r="6" fill="#e4e0ce"></circle></svg><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Работаю по всей России</h3><p class="capa-card-text">Веду дела дистанционно - по видеосвязи, через защищённый обмен документами и представительство по доверенности.</p></div></div></div></div><div class="capa-card" data-origin-mobile="center center" data-connect="seo" data-connect-mobile="seo-mobile" data-origin="center center" data-anchor-pos-mobile="center center" data-offset="0, 16%" data-anchor-pos="center center"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 63%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 46 45" fill="none" data-var-hover="1.41" data-var-hover-mobile="2.11" class="capa-seo-icon"><path d="M32.6862 27.8665C31.2976 27.8665 30.1719 26.7408 30.1719 25.3522V2.51429C30.1719 1.12568 31.2976 0 32.6862 0H42.7433C44.1319 0 45.2576 1.12568 45.2576 2.51429V25.3522C45.2576 26.7408 44.1319 27.8665 42.7433 27.8665H32.6862Z" fill="currentColor"></path><path d="M2.51428 44.679C1.12568 44.679 0 43.5533 0 42.1647V32.2213C0 30.8327 1.12568 29.707 2.51429 29.707H25.1429C26.5315 29.707 27.6571 30.8327 27.6571 32.2213V42.1647C27.6571 43.5533 26.5315 44.679 25.1429 44.679H2.51428Z" fill="currentColor"></path><path d="M30.1719 32.1588C30.1719 30.7702 31.2976 29.6445 32.6862 29.6445H42.7433C44.1319 29.6445 45.2576 30.7702 45.2576 32.1588V42.2262C45.2576 43.6148 44.1319 44.7405 42.7433 44.7405H32.6862C31.2976 44.7405 30.1719 43.6148 30.1719 42.2262V32.1588Z" fill="currentColor"></path><rect x="12.5703" y="12.0469" width="15.0857" height="15.0857" rx="2.51429" fill="currentColor"></rect></svg><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Честная оценка перспектив</h3><p class="capa-card-text">На консультации прямо говорю, есть ли смысл спорить и какой результат реалистичен - без завышенных обещаний.</p></div></div></div></div><div data-connect-mobile="gsap-mobile" data-connect="gsap" data-origin="center center" data-anchor-pos="center center" class="capa-card"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 39%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><div data-var-hover="3.68" class="capa-gsap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 72 45" fill="none" data-var-hover="1" data-var-hover-mobile="2.06" class="gsap-icon" style="width:1.9rem"><rect x="10" y="20.5" width="52" height="4" fill="currentColor"></rect><circle cx="10" cy="22.5" r="9" fill="currentColor"></circle><circle cx="36" cy="22.5" r="9" fill="currentColor"></circle><circle cx="62" cy="22.5" r="12" fill="currentColor"></circle><path d="M56 22.5L60.5 27L68 18" stroke="#e4e0ce" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></div><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Сопровождаю дело целиком</h3><p class="capa-card-text">От первой консультации до исполнения решения суда: доказательства, документы, переговоры и суд.</p></div></div></div></div><div data-connect-mobile="p-mobile" data-connect="p" data-origin="left center" data-anchor-pos="left center" data-origin-mobile="center center" data-anchor-pos-mobile="center center" class="capa-card"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 25%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 44 51" fill="none" data-var-hover="1.46" data-var-hover-mobile="2.16" class="capa-performance-icon"><path d="M10 23V16C10 8.8 15.6 3 22 3C28.4 3 34 8.8 34 16V23" stroke="currentColor" stroke-width="6" fill="none"></path><rect x="4" y="21" width="36" height="27" rx="3" fill="currentColor"></rect><circle cx="22" cy="33" r="4.5" fill="#e4e0ce"></circle><rect x="20" y="35" width="4" height="8" fill="#e4e0ce"></rect></svg><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Полная конфиденциальность</h3><p class="capa-card-text">Информация о вашем деле и семье защищена адвокатской тайной - особенно важно при высокой публичности или бизнесе.</p></div></div></div></div></div></div></div></section><section id="services" class="sevice_section"><div class="container"><div id="services_column" class="column"><div data-tl-to="{   'width':'auto',   'opacity':1,   'duration':0.7,   'ease':'expo.inOut' }" data-tl-type="trigger" data-tl-trigger="#services_column" data-tl-start="top 90%" data-tl-from="{'width':'0vw','opacity':0}" class="label">С ЧЕГО НАЧАТЬ</div><h2 data-tl-to="{'yPercent': 0,  'duration': 0.6, 'stagger': 0.1, 'delay': 0.3, 'ease': 'power2.out'}" data-tl-type="trigger" data-tl-trigger="#services_column" data-tl-start="top 90%" data-tl-split="lines" data-tl-from="{'yPercent': 100}" class="h2-style margin-bottom-s">Вы мама <br>или папа?</h2><p data-tl-to="{'yPercent': 0,  'duration': 0.6, 'stagger': 0.1, 'delay': 0.3, 'ease': 'power2.out'}" data-tl-type="trigger" data-tl-trigger="#services_column" data-tl-start="top 90%" data-tl-split="lines" data-tl-from="{'yPercent': 100}" class="max-width-389">На каждую сторону — отдельный разбор частых ситуаций и вопросов. Выберите, что ближе к вашему случаю.</p></div><div class="service-wrap fork-wrap"><a href="mama.html" class="service-card fork-card"><div class="service-top-content"><div class="service-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 42 42" fill="none" class="service-card-icon"><rect width="41.5299" height="41.5299" rx="9.96716" fill="#7BBBFF"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M29.9264 16.8302C29.9264 15.7569 29.113 14.8984 28.0963 14.8984C27.0795 14.8984 26.2661 15.7569 26.2661 16.8302C26.2661 17.5278 26.2661 20.2109 26.2661 20.9085C26.2661 21.9817 25.4527 22.8403 24.436 22.8403C23.4192 22.8403 22.6059 21.9817 22.6059 20.9085C22.6059 20.2109 22.6059 14.2544 22.6059 13.5568C22.6059 12.4836 21.7925 11.625 20.7757 11.625C19.759 11.625 18.9456 12.4836 18.9456 13.5568C18.9456 14.2544 18.9456 20.2109 18.9456 20.9085C18.9456 21.9817 18.1322 22.8403 17.1154 22.8403C16.0987 22.8403 15.2853 21.9817 15.2853 20.9085C15.2853 20.2109 15.2853 17.5278 15.2853 16.8302C15.2853 15.7569 14.4719 14.8984 13.4551 14.8984C12.4384 14.8984 11.625 15.7569 11.625 16.8302V26.5966C11.625 28.4211 12.9976 29.8699 14.7261 29.8699H26.6728C28.4013 29.8699 29.7739 28.4211 29.7739 26.5966L29.9264 16.8302Z" fill="currentColor"></path></svg><h3 class="service-card-heading">Я мама</h3></div><p>Хочу понять, как оставить ребёнка с собой, и на что реально обращает внимание суд.</p></div></a><a href="papa.html" class="service-card fork-card"><div class="service-top-content"><div class="service-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 42 42" fill="none" class="service-card-icon"><rect width="41.5299" height="41.5299" rx="9.96716" fill="#7BBBFF"></rect><path d="M20.7656 16.1932C20.7656 18.7145 18.7187 20.7614 16.1974 20.7614C13.6762 20.7614 11.6292 18.7145 11.6292 16.1932V11.625H16.1974C18.7187 11.625 20.7656 13.6719 20.7656 16.1932Z" fill="currentColor"></path><path d="M25.3302 20.7656C22.809 20.7656 20.762 18.7187 20.762 16.1974C20.762 13.6762 22.809 11.6292 25.3302 11.6292H29.8984V16.1974C29.8984 18.7187 27.8515 20.7656 25.3302 20.7656Z" fill="currentColor"></path><path d="M20.7656 25.3381C20.7656 22.8168 22.8126 20.7699 25.3338 20.7699C27.8551 20.7699 29.902 22.8168 29.902 25.3381V29.9062H25.3338C22.8126 29.9062 20.7656 27.8593 20.7656 25.3381Z" fill="currentColor"></path><path d="M16.1932 20.7656C18.7145 20.7656 20.7614 22.8126 20.7614 25.3338C20.7614 27.8551 18.7145 29.902 16.1932 29.902H11.625V25.3338C11.625 22.8126 13.6719 20.7656 16.1932 20.7656Z" fill="currentColor"></path></svg><h3 class="service-card-heading">Я папа</h3></div><p>Хочу отстоять место жительства ребёнка со мной или наладить общение с ним.</p></div></a></div></div></section><section id="webflow_journey" class="cta_section"><div class="container"><div id="cta_column" class="column cta-column"><h2 data-tl-once="" data-tl-type="trigger" data-tl-trigger="#cta_column" data-tl-start="top 90%" data-tl-from="{'yPercent': 100}" data-tl-to="{'yPercent': 0,  'duration': 0.6, 'stagger': 0.1, 'delay': 0.3, 'ease': 'power2.out'}" data-tl-split="lines" class="cta_heading">Разберём вашу <br>ситуацию <br><span class="cta-span-heading">на</span> &nbsp;<br><span class="cta-span-heading">консультации</span></h2><p data-tl-once="" data-tl-type="trigger" data-tl-trigger="#cta_column" data-tl-start="top 65%" data-tl-split="lines" data-tl-from="{'yPercent': 100}" data-tl-to="{'yPercent': 0,  'duration': 0.6, 'stagger': 0.1, 'delay': 0.3, 'ease': 'power2.out'}" class="max-width-389">Расскажите, что произошло, - оценю перспективы дела и предложу оптимальный путь решения: переговоры, соглашение или суд.</p><div class="cta-wrap"><img src="images/oleg-evsin-avatar.png" loading="lazy" alt="Адвокат Олег Евсин" class="cta_img"><div class="column"><div class="cta-column-item"><div class="cta-chat-grid"><div id="w-node-_5e7c5502-ddba-215f-98c3-2549ffbe6693-be2d4114" class="cta-chat-item"><div class="cta-chat"><div class="cta-text-wrap"><p id="w-node-_5e7c5502-ddba-215f-98c3-2549ffbe6696-be2d4114" class="cta-text">Готовы обсудить вашу ситуацию?</p></div></div></div></div><div class="cta-button-grid"><div class="cta-button-grid-item"><a data-button-hover="" href="#contact" class="cta-button w-inline-block"><p class="button-text">Получить консультацию</p></a></div></div></div><div class="typing-grid"><div class="typing-grid-item"><div class="cta-chat-typing-wrap"><div class="typing-dots"></div><div class="typing-dots"></div><div class="typing-dots"></div></div></div></div></div></div></div></div></section></main><footer class="footer"><div class="container"><div class="footer-contact-info"><div class="footer-contact-links"><a href="tel:+79015068877" class="footer-contact-link"><span class="footer-contact-label">Телефон</span><span class="footer-contact-value">+7 901 506-88-77</span><div class="footer-contact-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 23 23" fill="none" class="footer-contact-arrow"><rect x="15.4004" y="5.5" width="2" height="15" rx="1" transform="rotate(45 15.4004 5.5)" fill="currentColor"></rect><rect x="14.8145" y="5.5" width="2" height="11" rx="1" fill="currentColor"></rect><rect x="16.8145" y="5.5" width="2" height="11" rx="1" transform="rotate(90 16.8145 5.5)" fill="currentColor"></rect></svg></div></a><a href="https://wa.me/79015068877" target="_blank" class="footer-contact-link"><span class="footer-contact-label">WhatsApp</span><span class="footer-contact-value">+7 901 506-88-77</span><div class="footer-contact-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 23 23" fill="none" class="footer-contact-arrow"><rect x="15.4004" y="5.5" width="2" height="15" rx="1" transform="rotate(45 15.4004 5.5)" fill="currentColor"></rect><rect x="14.8145" y="5.5" width="2" height="11" rx="1" fill="currentColor"></rect><rect x="16.8145" y="5.5" width="2" height="11" rx="1" transform="rotate(90 16.8145 5.5)" fill="currentColor"></rect></svg></div></a><a href="mailto:evsinadvokat@yandex.ru" class="footer-contact-link"><span class="footer-contact-label">Email</span><span class="footer-contact-value">evsinadvokat@yandex.ru</span><div class="footer-contact-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 23 23" fill="none" class="footer-contact-arrow"><rect x="15.4004" y="5.5" width="2" height="15" rx="1" transform="rotate(45 15.4004 5.5)" fill="currentColor"></rect><rect x="14.8145" y="5.5" width="2" height="11" rx="1" fill="currentColor"></rect><rect x="16.8145" y="5.5" width="2" height="11" rx="1" transform="rotate(90 16.8145 5.5)" fill="currentColor"></rect></svg></div></a></div><div class="footer-contact-meta"><p class="op80">Адвокат Олег Евсин</p><p class="op80">Москва, ул. Новый Арбат, д. 23, офис 33</p><p class="op80">Коллегия адвокатов «Корпорация Адвокатов Москвы»<br>Адвокатская палата города Москвы, рег. № 77/3907</p><p class="op80">© 2026 Адвокат Евсин Олег Николаевич. Все права защищены.</p><p class="op80">Политика конфиденциальности · Согласие на обработку персональных данных</p></div></div><div class="footer-logo"><div class="w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1460 294" class="footer-logo-icon">
+</style></div><div data-flip-origin="" class="nesh-logo-preload-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3527 747" fill="none" class="nesh-logo-preload-svg"><path d="M 608.00 731.00 H 60.00 V 16.00 H 602.00 V 163.00 H 240.00 V 290.00 H 552.00 V 437.00 H 240.00 V 584.00 H 608.00 Z" fill="currentColor" class="nesh-logo-letter"></path><path d="M 1059.00 731.00 H 702.00 V 16.00 H 1049.00 Q 1276.00 16.00 1276.00 196.00 Q 1276.00 310.00 1165.00 348.00 V 350.00 Q 1227.00 361.00 1265.50 403.00 Q 1304.00 445.00 1304.00 520.00 Q 1304.00 731.00 1059.00 731.00 Z M 882.00 305.00 H 1002.00 Q 1045.00 305.00 1068.50 290.00 Q 1092.00 275.00 1092.00 234.00 Q 1092.00 193.00 1068.50 178.00 Q 1045.00 163.00 1002.00 163.00 H 882.00 Z M 882.00 584.00 H 1007.00 Q 1066.00 584.00 1093.00 565.50 Q 1120.00 547.00 1120.00 499.00 Q 1120.00 451.00 1093.00 433.00 Q 1066.00 415.00 1007.00 415.00 H 882.00 Z" fill="currentColor" class="nesh-logo-letter"></path><path d="M 1704.00 747.00 Q 1539.00 747.00 1450.50 644.50 Q 1362.00 542.00 1362.00 376.00 Q 1362.00 207.00 1453.00 103.50 Q 1544.00 0.00 1709.00 0.00 Q 1851.00 0.00 1931.50 76.50 Q 2012.00 153.00 2025.00 282.00 H 1841.00 Q 1830.00 217.00 1798.50 182.00 Q 1767.00 147.00 1701.00 147.00 Q 1617.00 147.00 1581.50 205.50 Q 1546.00 264.00 1546.00 373.00 Q 1546.00 482.00 1581.50 541.00 Q 1617.00 600.00 1701.00 600.00 Q 1768.00 600.00 1799.50 564.50 Q 1831.00 529.00 1841.00 463.00 H 2025.00 Q 2013.00 591.00 1930.00 669.00 Q 1847.00 747.00 1704.00 747.00 Z" fill="currentColor" class="nesh-logo-letter"></path><path d="M 2287.00 731.00 H 2107.00 V 16.00 H 2287.00 V 460.00 H 2289.00 L 2562.00 16.00 H 2742.00 V 731.00 H 2562.00 V 287.00 H 2560.00 Z" fill="currentColor" class="nesh-logo-letter"></path><path d="M 3042.00 731.00 H 2862.00 V 16.00 H 3042.00 V 296.00 H 3287.00 V 16.00 H 3467.00 V 731.00 H 3287.00 V 443.00 H 3042.00 Z" fill="currentColor" class="nesh-logo-letter"></path></svg></div><header data-tl-desktop="" data-tl-type="trigger" data-tl-trigger=".hero" data-tl-start="53% top" data-tl-from="{'zIndex': 2}" data-tl-to="{'zIndex': 100, 'duration': 0.1}" class="navigation"><div class="nav-container"><div data-tl-desktop="" data-tl-type="trigger" data-tl-trigger=".hero" data-tl-start="top 70%" class="profile-img-wrap"><div class="profile-img-item"><img class="hero-profile-img" src="images/oleg-evsin-hero-portrait-cutout-wide-bottom.png" data-tl-trigger=".hero" alt="Адвокат Олег Евсин" data-tl-end="70% top" data-tl-desktop="" data-tl-type="scroll" data-tl-to="{'filter': 'blur(90px)', 'opacity': 0.3}" data-tl-start="top top" sizes="100vw" loading="lazy" data-tl-from="{'filter': 'blur(0px)', 'opacity': 1}" fetchpriority="high" srcset="images/oleg-evsin-hero-portrait-cutout-wide-bottom.png 1024w"></div></div><div id="w-node-_5e7c5502-ddba-215f-98c3-2549ffbe61a2-be2d4114" class="nav-top-layout"><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="35% top" data-tl-end="39% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-top-bg"></div><div class="nav-top-item"><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="42% top" data-tl-end="44% top" data-tl-from="{'color' : '#7BBBFF', 'backgroundColor': 'transparent'}" data-tl-to="{'color' : '#000', 'backgroundColor': '#7BBBFF'}" class="nav-logo"><div class="nav-logo-item"><div data-flip-trigger=".hero" data-flip-start="top top" data-flip-end="44% top" class="nesh-logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3527 747" fill="none" class="nesh-logo-svg"><path d="M 608.00 731.00 H 60.00 V 16.00 H 602.00 V 163.00 H 240.00 V 290.00 H 552.00 V 437.00 H 240.00 V 584.00 H 608.00 Z" fill="currentColor"></path><path d="M 1059.00 731.00 H 702.00 V 16.00 H 1049.00 Q 1276.00 16.00 1276.00 196.00 Q 1276.00 310.00 1165.00 348.00 V 350.00 Q 1227.00 361.00 1265.50 403.00 Q 1304.00 445.00 1304.00 520.00 Q 1304.00 731.00 1059.00 731.00 Z M 882.00 305.00 H 1002.00 Q 1045.00 305.00 1068.50 290.00 Q 1092.00 275.00 1092.00 234.00 Q 1092.00 193.00 1068.50 178.00 Q 1045.00 163.00 1002.00 163.00 H 882.00 Z M 882.00 584.00 H 1007.00 Q 1066.00 584.00 1093.00 565.50 Q 1120.00 547.00 1120.00 499.00 Q 1120.00 451.00 1093.00 433.00 Q 1066.00 415.00 1007.00 415.00 H 882.00 Z" fill="currentColor"></path><path d="M 1704.00 747.00 Q 1539.00 747.00 1450.50 644.50 Q 1362.00 542.00 1362.00 376.00 Q 1362.00 207.00 1453.00 103.50 Q 1544.00 0.00 1709.00 0.00 Q 1851.00 0.00 1931.50 76.50 Q 2012.00 153.00 2025.00 282.00 H 1841.00 Q 1830.00 217.00 1798.50 182.00 Q 1767.00 147.00 1701.00 147.00 Q 1617.00 147.00 1581.50 205.50 Q 1546.00 264.00 1546.00 373.00 Q 1546.00 482.00 1581.50 541.00 Q 1617.00 600.00 1701.00 600.00 Q 1768.00 600.00 1799.50 564.50 Q 1831.00 529.00 1841.00 463.00 H 2025.00 Q 2013.00 591.00 1930.00 669.00 Q 1847.00 747.00 1704.00 747.00 Z" fill="currentColor"></path><path d="M 2287.00 731.00 H 2107.00 V 16.00 H 2287.00 V 460.00 H 2289.00 L 2562.00 16.00 H 2742.00 V 731.00 H 2562.00 V 287.00 H 2560.00 Z" fill="currentColor"></path><path d="M 3042.00 731.00 H 2862.00 V 16.00 H 3042.00 V 296.00 H 3287.00 V 16.00 H 3467.00 V 731.00 H 3287.00 V 443.00 H 3042.00 Z" fill="currentColor"></path></svg><div class="nesh-copyright-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 9 9" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="2% top" data-tl-end="5% top" data-tl-from="{'opacity': 0}" data-tl-to="{'opacity' : 1}" data-tl-desktop="" class="nesh-copyright-icon"><path d="M0.343933 5.97697C0.114645 5.44236 0 4.8828 0 4.29829C0 3.71378 0.114645 3.156 0.343933 2.62495C0.573221 2.0939 0.883118 1.6377 1.27362 1.25634C1.66413 0.871419 2.12808 0.56669 2.66547 0.342152C3.20645 0.114051 3.7743 0 4.36901 0C4.96373 0 5.52978 0.114051 6.06718 0.342152C6.60815 0.56669 7.0739 0.871419 7.4644 1.25634C7.85491 1.6377 8.1648 2.0939 8.39409 2.62495C8.62338 3.156 8.73802 3.71378 8.73802 4.29829C8.73802 5.07526 8.54277 5.7952 8.15226 6.45812C7.76176 7.11748 7.23153 7.63962 6.56158 8.02454C5.89163 8.40946 5.16077 8.60192 4.36901 8.60192C3.7743 8.60192 3.20645 8.48787 2.66547 8.25977C2.12808 8.03523 1.66413 7.73228 1.27362 7.35093C0.883118 6.96601 0.573221 6.50802 0.343933 5.97697ZM1.08017 4.29829C1.08017 4.7438 1.16615 5.16971 1.33811 5.57601C1.51008 5.97875 1.74295 6.32625 2.03672 6.61851C2.3305 6.91076 2.6798 7.14421 3.08464 7.31885C3.49306 7.48993 3.92118 7.57546 4.36901 7.57546C4.81684 7.57546 5.24317 7.48993 5.64801 7.31885C6.05643 7.14421 6.40752 6.91076 6.7013 6.61851C6.99507 6.32625 7.22794 5.97875 7.39991 5.57601C7.57546 5.16971 7.66324 4.7438 7.66324 4.29829C7.66324 3.85278 7.57546 3.42865 7.39991 3.02591C7.22794 2.6196 6.99507 2.27032 6.7013 1.97807C6.40752 1.68581 6.05643 1.45415 5.64801 1.28307C5.24317 1.11199 4.81684 1.02646 4.36901 1.02646C3.77071 1.02646 3.21899 1.17258 2.71384 1.46484C2.20869 1.75353 1.80922 2.14914 1.51545 2.65168C1.22526 3.15422 1.08017 3.70309 1.08017 4.29829ZM2.64398 6.58643V1.99945H4.91178C5.33811 1.99945 5.691 2.12954 5.97045 2.38972C6.25347 2.64633 6.39499 2.97958 6.39499 3.38945C6.39499 3.71378 6.29109 3.98821 6.0833 4.21275C5.87909 4.43729 5.62651 4.56916 5.32557 4.60836L5.26109 4.61905L6.34125 6.56505H5.0515L4.11644 4.75805H3.84237V6.58643H2.64398ZM3.84237 3.82783H4.74519C4.88491 3.82783 4.99597 3.79219 5.07837 3.72091C5.16436 3.64962 5.20735 3.55161 5.20735 3.42687C5.20735 3.29143 5.16615 3.18629 5.08375 3.11145C5.00135 3.0366 4.88849 2.99918 4.74519 2.99918H3.84237V3.82783Z" fill="currentColor"></path></svg></div></div></div></div><div class="social-wrap"><a class="social-link w-inline-block" data-tl-trigger=".hero" data-tl-end="46% top" href="tel:+79015068877" data-tl-type="scroll" data-tl-to="{'scale' : 1, 'opacity' : 1}" aria-label="Позвонить" data-tl-start="44% top" data-tl-from="{'scale' : 0.3, 'opacity' : 0}"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 15 15" fill="none" class="instagram"><path d="M2.41049 0C1.07921 0 0 1.07921 0 2.41049V12.0525C0 13.3837 1.07921 14.463 2.41049 14.463H12.0525C13.3837 14.463 14.463 13.3837 14.463 12.0525V2.41049C14.463 1.07921 13.3837 0 12.0525 0H2.41049Z" fill="currentColor" class="social-bg-path"></path><path d="M11.061 8.827 C10.487 8.827 9.937 8.735 9.423 8.565 C9.262 8.515 9.083 8.552 8.955 8.680 L7.945 9.690 C6.647 9.029 5.582 7.969 4.921 6.666 L5.931 5.651 C6.059 5.532 6.096 5.353 6.045 5.193 C5.876 4.683 5.784 4.133 5.784 3.559 C5.784 3.306 5.577 3.100 5.325 3.100 L3.719 3.100 C3.467 3.100 3.260 3.306 3.260 3.559 C3.260 7.868 6.752 11.360 11.061 11.360 C11.313 11.360 11.520 11.154 11.520 10.901 L11.520 9.295 C11.520 9.043 11.313 8.836 11.061 8.836 Z" fill="currentColor" class="social-path-white"></path></svg></a><a class="social-link w-inline-block" data-tl-trigger=".hero" data-tl-end="48% top" href="https://max.ru/+79015068877" data-tl-type="scroll" data-tl-to="{'scale' : 1, 'opacity' : 1}" aria-label="Написать в MAX" data-tl-start="46% top" target="_blank" data-tl-from="{'scale' : 0.3, 'opacity' : 0}"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 15 15" fill="none" class="instagram"><path d="M2.41049 0C1.07921 0 0 1.07921 0 2.41049V12.0525C0 13.3837 1.07921 14.463 2.41049 14.463H12.0525C13.3837 14.463 14.463 13.3837 14.463 12.0525V2.41049C14.463 1.07921 13.3837 0 12.0525 0H2.41049Z" fill="currentColor" class="social-bg-path"></path><path d="M4.086 3.926 L10.694 3.926 L10.694 8.882 L4.569 8.882 L4.086 9.365 L4.086 3.926 M4.086 3.100 C3.632 3.100 3.264 3.472 3.264 3.926 L3.260 11.360 L4.912 9.708 L10.694 9.708 C11.148 9.708 11.520 9.336 11.520 8.882 L11.520 3.926 C11.520 3.472 11.148 3.100 10.694 3.100 L4.086 3.100 Z" fill="currentColor" class="social-path-white"></path></svg></a></div><div class="mobile-menu-wrap"><a href="#contact" class="nav-button-mobile w-button">Звонок</a><div class="mobile-menu"><div class="mobile-menu-icons"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 7" fill="none" class="mobile-menu-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.6 0H11.2C9.8744 0 8.8 1.00725 8.8 2.25V4.5C8.8 5.74275 9.8744 6.75 11.2 6.75H13.6C14.9256 6.75 16 5.74275 16 4.5V2.25C16 1.00725 14.9256 0 13.6 0ZM7.2 2.25V4.5C7.2 5.74275 6.1256 6.75 4.8 6.75H2.4C1.0744 6.75 0 5.74275 0 4.5V2.25C0 1.00725 1.0744 0 2.4 0H4.8C6.1256 0 7.2 1.00725 7.2 2.25Z" fill="currentColor"></path></svg></div><div class="mobile-menu-icons"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 7" fill="none" class="mobile-menu-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.6 0H11.2C9.8744 0 8.8 1.00725 8.8 2.25V4.5C8.8 5.74275 9.8744 6.75 11.2 6.75H13.6C14.9256 6.75 16 5.74275 16 4.5V2.25C16 1.00725 14.9256 0 13.6 0ZM7.2 2.25V4.5C7.2 5.74275 6.1256 6.75 4.8 6.75H2.4C1.0744 6.75 0 5.74275 0 4.5V2.25C0 1.00725 1.0744 0 2.4 0H4.8C6.1256 0 7.2 1.00725 7.2 2.25Z" fill="currentColor"></path></svg></div></div></div></div><p data-tl-to="{ 'y': '0%'}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="38% top" data-tl-end="42% top" data-tl-split="lines" data-tl-from="{ 'y': '100%'}" class="nav-top-text">Если после развода не получается договориться, с кем останется ребёнок — помогаю через переговоры или в суде. Работаю и со стороны мамы, и со стороны папы. Очно и дистанционно по всей России.</p></div><div class="nav-stats-wrap"><div id="stats_projects" class="nav-stats-card"><div data-flip-end="40% top" data-flip-trigger=".hero" data-flip-start="top top" class="nav-webflow-bg"></div><div class="nav-webflow-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 91 57" fill="none" data-flip-id="icon" data-flip-trigger=".hero" data-flip-start="top top" data-flip-end="40% top" class="nav-webflow-icon"><path d="M42 6H49V50H42Z" fill="currentColor"></path><path d="M30 50H61L67 57H24Z" fill="currentColor"></path><path d="M6 8H85V14H6Z" fill="currentColor"></path><path d="M13 14L11 34H19L17 14Z" fill="currentColor"></path><path d="M15 34L23 40L15 46L7 40Z" fill="currentColor"></path><path d="M78 14L80 34H72L74 14Z" fill="currentColor"></path><path d="M76 34L84 40L76 46L68 40Z" fill="currentColor"></path></svg></div><div class="nav-webflow-text-wrap"><p class="nav-webflow-text" data-flip-start="top top" data-tl-trigger=".hero" data-tl-end="22% top" data-tl-type="scroll" data-tl-to="{'color': 'black'}" data-tl-start="20% top" id="projects_start_text" data-flip-trigger=".hero" data-tl-from="{'color': 'white'}" data-flip-end="40% top">2100+<br>Дел</p></div></div><div data-tl-to="{'opacity' : 1}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="39% top" data-tl-end="41% top" data-tl-from="{'opacity' : 0}" class="nav-stats-sep"></div><div id="stats_years" class="nav-stats-card"><div data-flip-end="40% top" data-flip-trigger=".hero" data-flip-start="top top" class="nav-experience-bg"></div><div id="yrs_big_text" class="nav-experience-numb-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 41 28" fill="none" data-flip-trigger=".hero" data-flip-start="top top" data-flip-end="40% top" class="nav-experience-numb"><text x="20.5" y="23" text-anchor="middle" font-family="Tr 3 A, Arial, sans-serif" font-size="23" font-weight="700" fill="currentColor">30</text></svg></div><div id="yrs_small_text_end" class="nav-experience-text-wrap"><p class="nav-experience-text" data-flip-start="top top" data-tl-trigger=".hero" data-tl-end="22% top" data-tl-type="scroll" data-tl-to="{'color': 'black'}" data-tl-start="20% top" data-flip-trigger=".hero" data-tl-from="{'color': 'white'}" data-flip-end="40% top">лет <br>опыта</p></div></div><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="34% top" data-tl-end="38% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="nav-top-bg"></div></div><div class="nav-menu-wrap"><nav class="nav-menu"><div data-flip-end="30% top" data-flip-trigger=".hero" data-flip-start="7% top" class="nav-menu-item"><a class="nav-link w-inline-block w--current" data-tl-trigger=".hero" data-tl-desktop="" href="#hero" data-tl-type="trigger" data-tl-to="{'scale': 1}" aria-label="hero" data-tl-start="50% top" data-tl-from="{'scale': 0}"></a><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="28% top" data-tl-end="30% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-item-bg"></div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 16" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="29% top" data-tl-end="31% top" data-tl-from="{'scale' : 0.2, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-desktop="" class="nav-item-icon"><path d="M7.99108 15.9986C6.2723 15.9986 4.55352 16.0026 2.83474 15.9971C1.39106 15.9925 0.265085 15.0252 0.0285645 13.5918C0.00300833 13.438 0.00150497 13.2786 0.00150497 13.1218C1.66682e-06 10.9077 0.00150503 8.69304 1.72796e-06 6.47893C-0.00100048 5.42887 0.433956 4.61586 1.29335 4.02526C2.96953 2.87282 4.64422 1.71785 6.3189 0.563387C7.39978 -0.182045 8.58689 -0.189106 9.66225 0.550274C11.349 1.70978 13.0342 2.8708 14.7189 4.03333C15.5637 4.61636 15.9977 5.42232 15.9982 6.45725C15.9992 8.68396 16.0022 10.9112 15.9972 13.1379C15.9937 14.598 15.0406 15.7262 13.6154 15.9678C13.4441 15.9971 13.2667 15.9976 13.0923 15.9981C11.3921 16.0001 9.69232 15.9991 7.99208 15.9991L7.99108 15.9986ZM8.0021 13.1858C8.62648 13.1858 9.25035 13.1868 9.87472 13.1843C9.96091 13.1843 10.0521 13.1803 10.1328 13.153C10.3042 13.095 10.3954 12.9619 10.3964 12.7813C10.3974 12.6003 10.3062 12.4676 10.1363 12.4071C10.0621 12.3804 9.97695 12.3758 9.89677 12.3758C8.62948 12.3738 7.3622 12.3743 6.09541 12.3758C6.02726 12.3758 5.9571 12.3809 5.89196 12.399C5.60533 12.4787 5.49208 12.8358 5.70705 13.039C5.79976 13.1263 5.96061 13.1772 6.0924 13.1803C6.7288 13.1944 7.3657 13.1868 8.0026 13.1868L8.0021 13.1858Z" fill="currentColor" fill-opacity="0.9"></path></svg><a data-link-id="home" href="#hero" data-button-hover="" class="hero-navigation-link w--current">Главная</a></div><div data-flip-end="33% top" data-flip-trigger=".hero" data-flip-start="5% top" class="nav-menu-item"><a class="nav-link w-inline-block" data-tl-trigger=".hero" data-tl-desktop="" href="#overview" data-tl-type="trigger" data-tl-to="{'scale': 1}" aria-label="what you get" data-tl-start="50% top" data-tl-from="{'scale': 0}"></a><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 16" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="32% top" data-tl-end="34% top" data-tl-from="{'scale' : 0.2, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-desktop="" class="nav-item-icon"><path d="M3.02695 10.5054C2.68978 10.3628 2.30764 10.3628 1.97048 10.5054L0.89209 10.9614C0.588053 11.0899 0.588054 11.6259 0.89209 11.7545L7.5656 14.5764C7.8456 14.6948 8.1492 14.6948 8.4292 14.5764L15.1027 11.7545C15.4067 11.6259 15.4067 11.0899 15.1027 10.9614L14.0247 10.5055C13.6875 10.3629 13.3053 10.3629 12.9682 10.5055L8.588 12.3577C8.2052 12.5196 7.7902 12.5196 7.4074 12.3577L3.02695 10.5054Z" fill="currentColor" fill-opacity="0.9"></path><path d="M3.0269 6.80226C2.68973 6.65966 2.30758 6.65966 1.97042 6.80226L0.89209 7.25819C0.588053 7.38679 0.588054 7.92272 0.89209 8.05126L7.5656 10.8732C7.8456 10.9917 8.1492 10.9917 8.4292 10.8732L15.1027 8.05126C15.4067 7.92272 15.4067 7.38679 15.1027 7.25819L14.0246 6.80232C13.6874 6.65976 13.3053 6.65976 12.9681 6.80232L8.58793 8.65452C8.20513 8.81639 7.79013 8.81639 7.40733 8.65452L3.0269 6.80226Z" fill="currentColor" fill-opacity="0.9"></path><path d="M7.45662 0.795795C7.84082 0.630568 8.25735 0.630568 8.64162 0.795795L14.7775 3.43428C15.1947 3.61367 15.1947 4.36142 14.7775 4.5408L8.64162 7.17928C8.25735 7.34454 7.84082 7.34454 7.45662 7.17928L1.32069 4.5408C0.903521 4.36142 0.903521 3.61367 1.32069 3.43428L7.45662 0.795795Z" fill="currentColor" fill-opacity="0.9"></path></svg><a data-button-hover="" data-link-id="what-you-get" href="#overview" class="hero-navigation-link">Преимущества</a><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="31% top" data-tl-end="33% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-item-bg"></div></div><div data-flip-end="34% top" data-flip-trigger=".hero" data-flip-start="3% top" class="nav-menu-item"><a class="nav-link w-inline-block" data-tl-trigger=".hero" data-tl-desktop="" href="#services" data-tl-type="trigger" data-tl-to="{'scale': 1}" aria-label="services" data-tl-start="50% top" data-tl-from="{'scale': 0}"></a><a data-button-hover="" data-link-id="services" href="#services_column" class="hero-navigation-link">Развилка</a><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 10 16" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="33% top" data-tl-end="35% top" data-tl-from="{'scale' : 0.2, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-desktop="" class="nav-item-icon services-icon"><path d="M3.4666 9.36814C2.71166 9.36814 2.0262 9.35713 1.34073 9.37035C0.342642 9.39018 -0.111245 8.89651 0.0230685 7.99513C0.368116 5.67444 0.773373 3.36037 1.13926 1.04189C1.25042 0.338853 1.65336 0.0104747 2.38282 0.0104747C3.57775 0.0104747 4.775 -0.0181757 5.96761 0.0192902C7.0097 0.0523484 7.38948 0.596706 7.06296 1.56641C6.62992 2.85348 6.15519 4.12732 5.63183 5.5929C6.66234 5.5929 7.56548 5.57527 8.46631 5.59731C9.95302 5.63477 10.3884 6.37748 9.64271 7.61165C8.13979 10.091 6.61371 12.555 5.10846 15.0321C4.74026 15.6382 4.33269 16.1958 3.48512 15.9335C2.6885 15.6867 2.68155 15.0365 2.77187 14.3842C2.9965 12.7533 3.22344 11.1246 3.46891 9.36814H3.4666Z" fill="currentColor"></path></svg><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="32% top" data-tl-end="34% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-item-bg"></div></div><div data-flip-end="36% top" data-flip-trigger=".hero" data-flip-start="1% top" class="nav-menu-item"><a class="nav-link w-inline-block" data-tl-trigger=".hero" data-tl-desktop="" href="#faq" data-tl-type="trigger" data-tl-to="{'scale': 1}" aria-label="faq" data-tl-start="50% top" data-tl-from="{'scale': 0}"></a><a data-button-hover="" data-link-id="faq" href="#faq" class="hero-navigation-link">Вопросы</a><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 16" fill="none" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="35% top" data-tl-end="37% top" data-tl-from="{'scale' : 0.2, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-desktop="" class="nav-item-icon"><path d="M16 7.49851V8.46742C15.9912 8.51752 15.9804 8.56761 15.9733 8.61771C15.9299 8.93163 15.9024 9.2489 15.8423 9.55991C15.2206 12.7806 12.6152 15.3266 9.38017 15.8773C9.08934 15.9269 8.79559 15.9595 8.50309 16H7.50333C7.46912 15.9912 7.4349 15.9766 7.40027 15.9745C6.60581 15.9186 5.84139 15.7353 5.09783 15.4519C1.69424 14.154 -0.441297 10.5372 0.0773575 6.9316C0.351915 5.02299 1.17725 3.38907 2.61263 2.09829C4.51909 0.382968 6.76478 -0.278283 9.29797 0.105777C10.8214 0.33663 12.162 0.992454 13.3099 2.0219C14.6894 3.25882 15.5514 4.79214 15.8769 6.6206C15.9286 6.91156 15.9595 7.20587 16 7.49851ZM7.34227 9.09402C7.34227 9.18795 7.3381 9.28188 7.34311 9.37497C7.36063 9.69934 7.61558 9.964 7.9377 9.99615C8.26275 10.0287 8.57945 9.80829 8.64871 9.48977C8.67041 9.38958 8.67166 9.28188 8.6654 9.17877C8.64245 8.7993 8.80852 8.56511 9.15443 8.39687C10.0353 7.96898 10.5477 7.24762 10.6503 6.2762C10.8577 4.31457 8.96458 2.83886 7.10235 3.4926C6.0471 3.8633 5.31564 4.90861 5.34151 6.00986C5.34985 6.36595 5.62107 6.64648 5.9699 6.65984C6.33375 6.67361 6.63251 6.41646 6.66381 6.06204C6.67132 5.97897 6.67591 5.89589 6.68676 5.81324C6.7869 5.02717 7.57427 4.4995 8.33618 4.70656C8.89698 4.85893 9.27711 5.31939 9.33135 5.91301C9.38017 6.4486 9.06597 6.97293 8.54148 7.21672C7.74159 7.58826 7.34853 8.21695 7.34227 9.09402ZM8.66582 11.9966C8.66332 11.6238 8.3729 11.3358 8.00071 11.3366C7.62976 11.3374 7.34019 11.6297 7.34144 12.002C7.34311 12.374 7.6331 12.662 8.00655 12.662C8.37666 12.662 8.66832 12.3673 8.66582 11.9966Z" fill="currentColor" fill-opacity="0.9"></path></svg><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="34% top" data-tl-end="36% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-item-bg"></div></div><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="31% top" data-tl-end="35% top" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" data-tl-to="{'scale' : 1, 'opacity' : 1}" class="nav-menu-bg"></div></nav><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="33% top" data-tl-end="38% top" data-tl-from="{'opacity' : 0}" data-tl-to="{'opacity' : 1}" class="nav-email-wrap"><div class="nav-email-item"><p class="email-text">evsinadvokat@yandex.ru</p><div class="clipboard-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 14 14" fill="none" class="clipboard-icon"><rect width="14" height="14" rx="7" fill="currentColor"></rect><path d="M6.94231 9.43099L10.2791 6.23416C10.5736 5.95167 10.5736 5.49388 10.2793 5.21194C10.1378 5.07602 9.94541 5 9.74562 5C9.54555 4.99973 9.35347 5.07602 9.21162 5.21166L6.54359 7.76803C6.50763 7.80249 6.45911 7.82163 6.4083 7.82163C6.35807 7.82163 6.30955 7.80222 6.27359 7.76803L5.28806 6.82375C5.14678 6.68811 4.95499 6.61182 4.75491 6.61182C4.55455 6.61182 4.36276 6.68811 4.22119 6.82375C4.07934 6.95939 4 7.14316 4 7.33514C4 7.52684 4.07934 7.71088 4.22119 7.84652L5.87487 9.43099C6.16941 9.71348 6.64748 9.71348 6.94231 9.43099Z" fill="currentColor" class="text-color-white"></path></svg><p>Скопировать</p></div><div class="clipboard-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 13 13" fill="none" class="copy-email-icon"><path d="M0.000482947 8.26401C0.000482947 7.10632 -0.000996063 5.94864 0.00122242 4.79096C0.00233167 4.18199 0.358029 3.71278 0.917458 3.58299C1.02875 3.55711 1.14596 3.54861 1.26058 3.54861C3.57188 3.54676 5.88317 3.54639 8.19447 3.5475C8.95208 3.5475 9.45494 4.04777 9.45531 4.80316C9.45679 7.11853 9.45679 9.43426 9.45531 11.7496C9.45494 12.4973 8.95134 12.9994 8.20297 12.9997C5.88724 13.0012 3.57114 13.0012 1.25541 12.9997C0.501861 12.9994 0.00233168 12.4947 0.00159218 11.737C0.000482937 10.5794 0.00159218 9.42169 0.00159218 8.26401H0.000482947Z" fill="currentColor" fill-opacity="0.9"></path><path d="M8.27693 0.000639714C9.43942 0.000639714 10.6019 -0.00120904 11.7644 0.00137919C12.366 0.00248844 12.8307 0.355228 12.9627 0.911329C12.9901 1.02669 12.9994 1.14871 12.9994 1.26777C13.0016 3.57388 13.0016 5.88037 13.0005 8.18649C13.0005 8.95261 12.5013 9.4514 11.7367 9.45399C11.5843 9.45436 11.4324 9.4551 11.28 9.45399C10.8777 9.45029 10.6344 9.2081 10.6341 8.80434C10.633 7.36047 10.6359 5.91698 10.6326 4.47311C10.6307 3.62713 10.2495 3.00041 9.51004 2.59405C9.20056 2.42397 8.86261 2.36592 8.51024 2.36666C7.09411 2.36962 5.6776 2.36777 4.26147 2.36777C3.76674 2.36777 3.54305 2.14592 3.54711 1.64861C3.54896 1.40938 3.53676 1.16461 3.58076 0.932035C3.68762 0.369278 4.17754 0.00248844 4.7891 0.00174895C5.95159 -9.97919e-05 7.11407 0.00100944 8.27656 0.00137919L8.27693 0.000639714Z" fill="currentColor" fill-opacity="0.9"></path></svg></div></div></div><div data-flip-end="35% top" data-flip-target=".hero" data-flip-start="5% top" class="nav-button-wrap"><a data-button-hover="" href="#contact" class="nav-button w-inline-block"><p class="button-text">Получить консультацию</p></a><a data-button-hover="" href="#services_column" class="nav-button-secondary w-inline-block"><p class="button-text">Узнать больше</p></a></div></div></div></header><main data-tl-desktop="" data-tl-type="trigger" data-tl-trigger=".hero" data-tl-start="53% top" data-tl-from="{'zIndex': 20}" data-tl-to="{'zIndex': 99, 'duration': 0.1}" class="main-wrap"><section id="hero" data-flip-start-trigger="" data-flip-start="top top" class="hero"><div class="hero-sticky"><div class="nesh-logo-preload"><div data-flip-origin="" class="nesh-logo-wrap"><div class="nesh-logo-ghost-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3527 747" fill="none" data-flip-target="" class="nesh-logo-ghost"><path d="M 608.00 731.00 H 60.00 V 16.00 H 602.00 V 163.00 H 240.00 V 290.00 H 552.00 V 437.00 H 240.00 V 584.00 H 608.00 Z" fill="currentColor"></path><path d="M 1059.00 731.00 H 702.00 V 16.00 H 1049.00 Q 1276.00 16.00 1276.00 196.00 Q 1276.00 310.00 1165.00 348.00 V 350.00 Q 1227.00 361.00 1265.50 403.00 Q 1304.00 445.00 1304.00 520.00 Q 1304.00 731.00 1059.00 731.00 Z M 882.00 305.00 H 1002.00 Q 1045.00 305.00 1068.50 290.00 Q 1092.00 275.00 1092.00 234.00 Q 1092.00 193.00 1068.50 178.00 Q 1045.00 163.00 1002.00 163.00 H 882.00 Z M 882.00 584.00 H 1007.00 Q 1066.00 584.00 1093.00 565.50 Q 1120.00 547.00 1120.00 499.00 Q 1120.00 451.00 1093.00 433.00 Q 1066.00 415.00 1007.00 415.00 H 882.00 Z" fill="currentColor"></path><path d="M 1704.00 747.00 Q 1539.00 747.00 1450.50 644.50 Q 1362.00 542.00 1362.00 376.00 Q 1362.00 207.00 1453.00 103.50 Q 1544.00 0.00 1709.00 0.00 Q 1851.00 0.00 1931.50 76.50 Q 2012.00 153.00 2025.00 282.00 H 1841.00 Q 1830.00 217.00 1798.50 182.00 Q 1767.00 147.00 1701.00 147.00 Q 1617.00 147.00 1581.50 205.50 Q 1546.00 264.00 1546.00 373.00 Q 1546.00 482.00 1581.50 541.00 Q 1617.00 600.00 1701.00 600.00 Q 1768.00 600.00 1799.50 564.50 Q 1831.00 529.00 1841.00 463.00 H 2025.00 Q 2013.00 591.00 1930.00 669.00 Q 1847.00 747.00 1704.00 747.00 Z" fill="currentColor"></path><path d="M 2287.00 731.00 H 2107.00 V 16.00 H 2287.00 V 460.00 H 2289.00 L 2562.00 16.00 H 2742.00 V 731.00 H 2562.00 V 287.00 H 2560.00 Z" fill="currentColor"></path><path d="M 3042.00 731.00 H 2862.00 V 16.00 H 3042.00 V 296.00 H 3287.00 V 16.00 H 3467.00 V 731.00 H 3287.00 V 443.00 H 3042.00 Z" fill="currentColor"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 9 9" fill="none" class="nesh-copyright-icon-ghost"><path d="M0.343933 5.97697C0.114645 5.44236 0 4.8828 0 4.29829C0 3.71378 0.114645 3.156 0.343933 2.62495C0.573221 2.0939 0.883118 1.6377 1.27362 1.25634C1.66413 0.871419 2.12808 0.56669 2.66547 0.342152C3.20645 0.114051 3.7743 0 4.36901 0C4.96373 0 5.52978 0.114051 6.06718 0.342152C6.60815 0.56669 7.0739 0.871419 7.4644 1.25634C7.85491 1.6377 8.1648 2.0939 8.39409 2.62495C8.62338 3.156 8.73802 3.71378 8.73802 4.29829C8.73802 5.07526 8.54277 5.7952 8.15226 6.45812C7.76176 7.11748 7.23153 7.63962 6.56158 8.02454C5.89163 8.40946 5.16077 8.60192 4.36901 8.60192C3.7743 8.60192 3.20645 8.48787 2.66547 8.25977C2.12808 8.03523 1.66413 7.73228 1.27362 7.35093C0.883118 6.96601 0.573221 6.50802 0.343933 5.97697ZM1.08017 4.29829C1.08017 4.7438 1.16615 5.16971 1.33811 5.57601C1.51008 5.97875 1.74295 6.32625 2.03672 6.61851C2.3305 6.91076 2.6798 7.14421 3.08464 7.31885C3.49306 7.48993 3.92118 7.57546 4.36901 7.57546C4.81684 7.57546 5.24317 7.48993 5.64801 7.31885C6.05643 7.14421 6.40752 6.91076 6.7013 6.61851C6.99507 6.32625 7.22794 5.97875 7.39991 5.57601C7.57546 5.16971 7.66324 4.7438 7.66324 4.29829C7.66324 3.85278 7.57546 3.42865 7.39991 3.02591C7.22794 2.6196 6.99507 2.27032 6.7013 1.97807C6.40752 1.68581 6.05643 1.45415 5.64801 1.28307C5.24317 1.11199 4.81684 1.02646 4.36901 1.02646C3.77071 1.02646 3.21899 1.17258 2.71384 1.46484C2.20869 1.75353 1.80922 2.14914 1.51545 2.65168C1.22526 3.15422 1.08017 3.70309 1.08017 4.29829ZM2.64398 6.58643V1.99945H4.91178C5.33811 1.99945 5.691 2.12954 5.97045 2.38972C6.25347 2.64633 6.39499 2.97958 6.39499 3.38945C6.39499 3.71378 6.29109 3.98821 6.0833 4.21275C5.87909 4.43729 5.62651 4.56916 5.32557 4.60836L5.26109 4.61905L6.34125 6.56505H5.0515L4.11644 4.75805H3.84237V6.58643H2.64398ZM3.84237 3.82783H4.74519C4.88491 3.82783 4.99597 3.79219 5.07837 3.72091C5.16436 3.64962 5.20735 3.55161 5.20735 3.42687C5.20735 3.29143 5.16615 3.18629 5.08375 3.11145C5.00135 3.0366 4.88849 2.99918 4.74519 2.99918H3.84237V3.82783Z" fill="currentColor"></path></svg><div class="hero-logo-roles" aria-label="Семейный адвокат"><span>Семейный</span><span>Адвокат</span></div></div></div><div class="hero-navigation-wrap"><div class="hero-links-ghost-wrapper"><div class="ghost-link-item"><div data-link-id="home" class="hero-link-ghost">главная</div></div></div><div class="hero-links-ghost-wrapper is-hero-right-nav-item"><div class="ghost-link-item"><div data-link-id="what-you-get" class="hero-link-ghost">преимущества</div></div><div data-tl-to="{'opacity': 0, 'x': '0vw', 'y': '1vw'}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="top top" data-tl-end="3% top" data-tl-from="{'opacity': 1, 'x': '0vw', 'y': '0vw'}" class="hero-navigation-sep"></div><div class="ghost-link-item"><div data-link-id="services" class="hero-link-ghost">услуги</div></div><div data-tl-to="{'opacity': 0, 'x': '0vw', 'y': '1vw'}" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="top top" data-tl-end="1% top" data-tl-from="{'opacity': 1, 'x': '0vw', 'y': '0vw'}" class="hero-navigation-sep"></div><div class="ghost-link-item"><div data-link-id="faq" class="hero-link-ghost">вопросы</div></div></div></div></div><div class="hero-container"><p class="hero-left-text" data-tl-trigger=".hero" data-tl-split="lines" data-tl-end="10% top" data-tl-desktop="" data-tl-type="scroll" data-tl-to="{ 'y': '-100%'}" data-tl-start="5% top" data-tl-from="{ 'y': '0%'}">Решение споров о детях</p><div class="hero-content-layout"><h1 class="hero-heading"></h1><div class="hero-buttons-wrap"><div class="hero-usp" aria-label="Семейный адвокат. С заботой о детях."><span>Семейный адвокат</span><span>С заботой о детях.</span></div><div class="hero-cta-button"><p class="button-text">Получить консультацию</p></div><div class="hero-button"><p class="button-text">Узнать больше</p></div></div></div><p class="hero-right-text" data-tl-trigger=".hero" data-tl-split="lines" data-tl-end="10% top" data-tl-desktop="" data-tl-type="scroll" data-tl-to="{ 'y': '-100%'}" data-tl-start="5% top" data-tl-from="{ 'y': '0%'}"></p><div class="hero-cards-wrap"><div class="hero-cards-left"><div class="hero-card-2-wrap"><div data-flip-id="hero-card-2" class="hero-card-2"><div class="hero-card-2-bg"></div><div class="hero-webflow-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 91 57" fill="none" data-flip-id="icon" class="hero-webflow-icon"><path d="M42 6H49V50H42Z" fill="currentColor"></path><path d="M30 50H61L67 57H24Z" fill="currentColor"></path><path d="M6 8H85V14H6Z" fill="currentColor"></path><path d="M13 14L11 34H19L17 14Z" fill="currentColor"></path><path d="M15 34L23 40L15 46L7 40Z" fill="currentColor"></path><path d="M78 14L80 34H72L74 14Z" fill="currentColor"></path><path d="M76 34L84 40L76 46L68 40Z" fill="currentColor"></path></svg></div><div class="hero-c-projects-text-wrap"><p id="projects_start_text" data-flip-id="hero-card-2-text" class="hero-webflow-projects-text">2100+<br>Дел</p></div></div></div><div class="hero-card-1-wrap"><div class="hero-card-1"><div class="experience-bg"></div><div class="experience-number-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 41 28" fill="none"  class="experience-number"><text x="20.5" y="23" text-anchor="middle" font-family="Tr 3 A, Arial, sans-serif" font-size="23" font-weight="700" fill="currentColor">30</text></svg></div><div class="experience-text-wrap"><p id="yrs_small_text_start" class="experience-text">лет <br>опыта</p></div></div></div></div><div data-tl-desktop="" data-tl-type="scroll" data-tl-trigger=".hero" data-tl-start="5% top" data-tl-end="20% top" data-tl-from="{'scale': 1, 'opacity': 1, 'x': '0vw', 'y': '0vw'}" data-tl-to="{'scale': 0.3, 'opacity': 0, 'x': '-25vw', 'y': '-5vw'}" class="hero-card-3"><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Место жительства ребёнка</p></div><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Порядок общения</p></div><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Переезд и выезд за границу</p></div><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Алименты на ребёнка</p></div><div class="hero-card-3-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 19 19" fill="none" class="hero-card-3-icon"><circle cx="9.5" cy="9.5" r="4.5" fill="currentColor"></circle></svg><p>Родительские права</p></div></div></div></div><div class="mobile-hero-image-wrap"><img src="images/oleg-evsin-hero-portrait-cutout-wide-bottom.png" loading="lazy" fetchpriority="high" alt="Адвокат Олег Евсин" class="mobile-hero-image"></div></div></section><section id="overview" class="what_you_get_section"><div class="container"><div class="column flex-center text-center"><h2 class="h2-big h2-style">Пять причин <br>обратиться</h2><div data-tl-to="{   'width':'auto',   'opacity':1,   'duration':0.7,   'ease':'expo.inOut' }" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 100%" data-tl-from="{'width':'0vw','opacity':0}" class="label">Ключевые преимущества</div><p class="what_you_get-text">Глубокая <span data-connect="w" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> специализация и приём <span data-connect="seo" class="span" style="white-space:nowrap">&nbsp; &nbsp; &nbsp; &nbsp; </span> по всей России, <span data-connect="i" style="white-space:nowrap">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> честная оценка перспектив, <span data-connect="gsap" class="span" style="white-space:nowrap">&nbsp; &nbsp; &nbsp; &nbsp;</span> сопровождение дела до результата и <span data-connect="p" class="span" style="white-space:nowrap">&nbsp;</span></p><p class="what_you_get-text-mobile">Глубокая <br>специализация и <span data-connect="w-mobile" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> приём <span data-connect="seo-mobile" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> по всей России, <span data-connect="i-mobile" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> честная оценка перспектив, <span data-connect="gsap-mobile" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> сопровождение до результата и <span data-connect="p-mobile" class="span" style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p><div class="capa-cards-wrap"><div data-connect-mobile="w-mobile" data-connect="w" data-origin="center left" data-anchor-pos="left center" data-origin-mobile="center center" data-anchor-pos-mobile="center center" class="capa-card"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 80%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 91 57" fill="none" data-var-hover="1.34" data-var-hover-mobile="2.04" class="webflow-icon"><path d="M42 6H49V50H42Z" fill="currentColor"></path><path d="M30 50H61L67 57H24Z" fill="currentColor"></path><path d="M6 8H85V14H6Z" fill="currentColor"></path><path d="M13 14L11 34H19L17 14Z" fill="currentColor"></path><path d="M15 34L23 40L15 46L7 40Z" fill="currentColor"></path><path d="M78 14L80 34H72L74 14Z" fill="currentColor"></path><path d="M76 34L84 40L76 46L68 40Z" fill="currentColor"></path></svg><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Только семейное право</h3><p class="capa-card-text">Не распыляюсь на другие категории дел - только семейные споры. Это позволяет глубже понимать практику судов именно по этой категории.</p></div></div></div></div><div data-connect-mobile="i-mobile" data-connect="i" data-origin="center center" data-anchor-pos="center center" class="capa-card"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 47%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 36 48" fill="none" data-var-hover="1.47" data-var-hover-mobile="2.111" class="capa-settings-icon"><path d="M18 47C18 47 4 29 4 18 A14 14 0 1 1 32 18 C32 29 18 47 18 47 Z" fill="currentColor"></path><circle cx="18" cy="17" r="6" fill="#e4e0ce"></circle></svg><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Работаю по всей России</h3><p class="capa-card-text">Веду дела дистанционно - по видеосвязи, через защищённый обмен документами и представительство по доверенности.</p></div></div></div></div><div class="capa-card" data-origin-mobile="center center" data-connect="seo" data-connect-mobile="seo-mobile" data-origin="center center" data-anchor-pos-mobile="center center" data-offset="0, 16%" data-anchor-pos="center center"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 63%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 46 45" fill="none" data-var-hover="1.41" data-var-hover-mobile="2.11" class="capa-seo-icon"><path d="M32.6862 27.8665C31.2976 27.8665 30.1719 26.7408 30.1719 25.3522V2.51429C30.1719 1.12568 31.2976 0 32.6862 0H42.7433C44.1319 0 45.2576 1.12568 45.2576 2.51429V25.3522C45.2576 26.7408 44.1319 27.8665 42.7433 27.8665H32.6862Z" fill="currentColor"></path><path d="M2.51428 44.679C1.12568 44.679 0 43.5533 0 42.1647V32.2213C0 30.8327 1.12568 29.707 2.51429 29.707H25.1429C26.5315 29.707 27.6571 30.8327 27.6571 32.2213V42.1647C27.6571 43.5533 26.5315 44.679 25.1429 44.679H2.51428Z" fill="currentColor"></path><path d="M30.1719 32.1588C30.1719 30.7702 31.2976 29.6445 32.6862 29.6445H42.7433C44.1319 29.6445 45.2576 30.7702 45.2576 32.1588V42.2262C45.2576 43.6148 44.1319 44.7405 42.7433 44.7405H32.6862C31.2976 44.7405 30.1719 43.6148 30.1719 42.2262V32.1588Z" fill="currentColor"></path><rect x="12.5703" y="12.0469" width="15.0857" height="15.0857" rx="2.51429" fill="currentColor"></rect></svg><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Честная оценка перспектив</h3><p class="capa-card-text">На консультации прямо говорю, есть ли смысл спорить и какой результат реалистичен - без завышенных обещаний.</p></div></div></div></div><div data-connect-mobile="gsap-mobile" data-connect="gsap" data-origin="center center" data-anchor-pos="center center" class="capa-card"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 39%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><div data-var-hover="3.68" class="capa-gsap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 72 45" fill="none" data-var-hover="1" data-var-hover-mobile="2.06" class="gsap-icon" style="width:1.9rem"><rect x="10" y="20.5" width="52" height="4" fill="currentColor"></rect><circle cx="10" cy="22.5" r="9" fill="currentColor"></circle><circle cx="36" cy="22.5" r="9" fill="currentColor"></circle><circle cx="62" cy="22.5" r="12" fill="currentColor"></circle><path d="M56 22.5L60.5 27L68 18" stroke="#e4e0ce" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></div><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Сопровождаю дело целиком</h3><p class="capa-card-text">От первой консультации до исполнения решения суда: доказательства, документы, переговоры и суд.</p></div></div></div></div><div data-connect-mobile="p-mobile" data-connect="p" data-origin="left center" data-anchor-pos="left center" data-origin-mobile="center center" data-anchor-pos-mobile="center center" class="capa-card"><div data-tl-to="{'scale' : 1, 'opacity' : 1}" data-tl-type="trigger" data-tl-trigger=".what_you_get-text" data-tl-start="top 25%" data-tl-from="{'scale' : 0.5, 'opacity' : 0}" class="capa-card-item"><div class="capa-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 44 51" fill="none" data-var-hover="1.46" data-var-hover-mobile="2.16" class="capa-performance-icon"><path d="M10 23V16C10 8.8 15.6 3 22 3C28.4 3 34 8.8 34 16V23" stroke="currentColor" stroke-width="6" fill="none"></path><rect x="4" y="21" width="36" height="27" rx="3" fill="currentColor"></rect><circle cx="22" cy="33" r="4.5" fill="#e4e0ce"></circle><rect x="20" y="35" width="4" height="8" fill="#e4e0ce"></rect></svg><div data-var-hover="1" data-var-hover-mobile="5.507" class="capa-card-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 8 7" fill="none" class="capa-card-arrow"><path d="M4.21716 6.12347C3.95528 6.57706 3.30058 6.57706 3.0387 6.12346L0.0925457 1.02058C-0.169335 0.566986 0.158016 -7.19718e-07 0.681777 -6.73929e-07L6.57409 -1.58807e-07C7.09785 -1.13018e-07 7.4252 0.566987 7.16331 1.02058L4.21716 6.12347Z" fill="currentColor"></path></svg></div></div><div class="capa-card-bottom"><div class="capa-card-bottom-layout"><h3 class="capa-card-heading">Полная конфиденциальность</h3><p class="capa-card-text">Информация о вашем деле и семье защищена адвокатской тайной - особенно важно при высокой публичности или бизнесе.</p></div></div></div></div></div></div></div></section><section id="services" class="sevice_section"><div class="container"><div id="services_column" class="column"><div data-tl-to="{   'width':'auto',   'opacity':1,   'duration':0.7,   'ease':'expo.inOut' }" data-tl-type="trigger" data-tl-trigger="#services_column" data-tl-start="top 90%" data-tl-from="{'width':'0vw','opacity':0}" class="label">С ЧЕГО НАЧАТЬ</div><h2 data-tl-to="{'yPercent': 0,  'duration': 0.6, 'stagger': 0.1, 'delay': 0.3, 'ease': 'power2.out'}" data-tl-type="trigger" data-tl-trigger="#services_column" data-tl-start="top 90%" data-tl-split="lines" data-tl-from="{'yPercent': 100}" class="h2-style margin-bottom-s">Вы мама <br>или папа?</h2><p data-tl-to="{'yPercent': 0,  'duration': 0.6, 'stagger': 0.1, 'delay': 0.3, 'ease': 'power2.out'}" data-tl-type="trigger" data-tl-trigger="#services_column" data-tl-start="top 90%" data-tl-split="lines" data-tl-from="{'yPercent': 100}" class="max-width-389">На каждую сторону — отдельный разбор частых ситуаций и вопросов. Выберите, что ближе к вашему случаю.</p></div><div class="service-wrap fork-wrap"><a href="mama.html" class="service-card fork-card"><div class="service-top-content"><div class="service-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 42 42" fill="none" class="service-card-icon"><rect width="41.5299" height="41.5299" rx="9.96716" fill="#7BBBFF"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M29.9264 16.8302C29.9264 15.7569 29.113 14.8984 28.0963 14.8984C27.0795 14.8984 26.2661 15.7569 26.2661 16.8302C26.2661 17.5278 26.2661 20.2109 26.2661 20.9085C26.2661 21.9817 25.4527 22.8403 24.436 22.8403C23.4192 22.8403 22.6059 21.9817 22.6059 20.9085C22.6059 20.2109 22.6059 14.2544 22.6059 13.5568C22.6059 12.4836 21.7925 11.625 20.7757 11.625C19.759 11.625 18.9456 12.4836 18.9456 13.5568C18.9456 14.2544 18.9456 20.2109 18.9456 20.9085C18.9456 21.9817 18.1322 22.8403 17.1154 22.8403C16.0987 22.8403 15.2853 21.9817 15.2853 20.9085C15.2853 20.2109 15.2853 17.5278 15.2853 16.8302C15.2853 15.7569 14.4719 14.8984 13.4551 14.8984C12.4384 14.8984 11.625 15.7569 11.625 16.8302V26.5966C11.625 28.4211 12.9976 29.8699 14.7261 29.8699H26.6728C28.4013 29.8699 29.7739 28.4211 29.7739 26.5966L29.9264 16.8302Z" fill="currentColor"></path></svg><h3 class="service-card-heading">Я мама</h3></div><p>Хочу понять, как оставить ребёнка с собой, и на что реально обращает внимание суд.</p></div></a><a href="papa.html" class="service-card fork-card"><div class="service-top-content"><div class="service-card-top-item"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 42 42" fill="none" class="service-card-icon"><rect width="41.5299" height="41.5299" rx="9.96716" fill="#7BBBFF"></rect><path d="M20.7656 16.1932C20.7656 18.7145 18.7187 20.7614 16.1974 20.7614C13.6762 20.7614 11.6292 18.7145 11.6292 16.1932V11.625H16.1974C18.7187 11.625 20.7656 13.6719 20.7656 16.1932Z" fill="currentColor"></path><path d="M25.3302 20.7656C22.809 20.7656 20.762 18.7187 20.762 16.1974C20.762 13.6762 22.809 11.6292 25.3302 11.6292H29.8984V16.1974C29.8984 18.7187 27.8515 20.7656 25.3302 20.7656Z" fill="currentColor"></path><path d="M20.7656 25.3381C20.7656 22.8168 22.8126 20.7699 25.3338 20.7699C27.8551 20.7699 29.902 22.8168 29.902 25.3381V29.9062H25.3338C22.8126 29.9062 20.7656 27.8593 20.7656 25.3381Z" fill="currentColor"></path><path d="M16.1932 20.7656C18.7145 20.7656 20.7614 22.8126 20.7614 25.3338C20.7614 27.8551 18.7145 29.902 16.1932 29.902H11.625V25.3338C11.625 22.8126 13.6719 20.7656 16.1932 20.7656Z" fill="currentColor"></path></svg><h3 class="service-card-heading">Я папа</h3></div><p>Хочу отстоять место жительства ребёнка со мной или наладить общение с ним.</p></div></a></div></div></section><section id="webflow_journey" class="cta_section"><div class="container"><div id="cta_column" class="column cta-column"><h2 data-tl-once="" data-tl-type="trigger" data-tl-trigger="#cta_column" data-tl-start="top 90%" data-tl-from="{'yPercent': 100}" data-tl-to="{'yPercent': 0,  'duration': 0.6, 'stagger': 0.1, 'delay': 0.3, 'ease': 'power2.out'}" data-tl-split="lines" class="cta_heading">Разберём вашу <br>ситуацию <br><span class="cta-span-heading">на</span> &nbsp;<br><span class="cta-span-heading">консультации</span></h2><p data-tl-once="" data-tl-type="trigger" data-tl-trigger="#cta_column" data-tl-start="top 65%" data-tl-split="lines" data-tl-from="{'yPercent': 100}" data-tl-to="{'yPercent': 0,  'duration': 0.6, 'stagger': 0.1, 'delay': 0.3, 'ease': 'power2.out'}" class="max-width-389">Расскажите, что произошло, - оценю перспективы дела и предложу оптимальный путь решения: переговоры, соглашение или суд.</p><div class="cta-wrap"><img src="images/oleg-evsin-avatar.png" loading="lazy" alt="Адвокат Олег Евсин" class="cta_img"><div class="column"><div class="cta-column-item"><div class="cta-chat-grid"><div id="w-node-_5e7c5502-ddba-215f-98c3-2549ffbe6693-be2d4114" class="cta-chat-item"><div class="cta-chat"><div class="cta-text-wrap"><p id="w-node-_5e7c5502-ddba-215f-98c3-2549ffbe6696-be2d4114" class="cta-text">Готовы обсудить вашу ситуацию?</p></div></div></div></div><div class="cta-button-grid"><div class="cta-button-grid-item"><a data-button-hover="" href="#contact" class="cta-button w-inline-block"><p class="button-text">Получить консультацию</p></a></div></div></div><div class="typing-grid"><div class="typing-grid-item"><div class="cta-chat-typing-wrap"><div class="typing-dots"></div><div class="typing-dots"></div><div class="typing-dots"></div></div></div></div></div></div></div></div></section></main><footer class="footer"><div class="container"><div class="footer-contact-info"><div class="footer-contact-links"><a href="tel:+79015068877" class="footer-contact-link"><span class="footer-contact-label">Телефон</span><span class="footer-contact-value">+7 901 506-88-77</span><div class="footer-contact-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 23 23" fill="none" class="footer-contact-arrow"><rect x="15.4004" y="5.5" width="2" height="15" rx="1" transform="rotate(45 15.4004 5.5)" fill="currentColor"></rect><rect x="14.8145" y="5.5" width="2" height="11" rx="1" fill="currentColor"></rect><rect x="16.8145" y="5.5" width="2" height="11" rx="1" transform="rotate(90 16.8145 5.5)" fill="currentColor"></rect></svg></div></a><a href="https://wa.me/79015068877" target="_blank" class="footer-contact-link"><span class="footer-contact-label">WhatsApp</span><span class="footer-contact-value">+7 901 506-88-77</span><div class="footer-contact-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 23 23" fill="none" class="footer-contact-arrow"><rect x="15.4004" y="5.5" width="2" height="15" rx="1" transform="rotate(45 15.4004 5.5)" fill="currentColor"></rect><rect x="14.8145" y="5.5" width="2" height="11" rx="1" fill="currentColor"></rect><rect x="16.8145" y="5.5" width="2" height="11" rx="1" transform="rotate(90 16.8145 5.5)" fill="currentColor"></rect></svg></div></a><a href="mailto:evsinadvokat@yandex.ru" class="footer-contact-link"><span class="footer-contact-label">Email</span><span class="footer-contact-value">evsinadvokat@yandex.ru</span><div class="footer-contact-arrow-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 23 23" fill="none" class="footer-contact-arrow"><rect x="15.4004" y="5.5" width="2" height="15" rx="1" transform="rotate(45 15.4004 5.5)" fill="currentColor"></rect><rect x="14.8145" y="5.5" width="2" height="11" rx="1" fill="currentColor"></rect><rect x="16.8145" y="5.5" width="2" height="11" rx="1" transform="rotate(90 16.8145 5.5)" fill="currentColor"></rect></svg></div></a></div><div class="footer-contact-meta"><p class="op80">Адвокат Олег Евсин</p><p class="op80">Москва, ул. Новый Арбат, д. 23, офис 33</p><p class="op80">Коллегия адвокатов «Корпорация Адвокатов Москвы»<br>Адвокатская палата города Москвы, рег. № 77/3907</p><p class="op80">© 2026 Адвокат Евсин Олег Николаевич. Все права защищены.</p><p class="op80">Политика конфиденциальности · Согласие на обработку персональных данных</p></div></div><div class="footer-logo"><div class="w-embed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1460 294" class="footer-logo-icon">
   <defs>
     <clipPath id="nesh-clip">
       <path d="M 239.27 287.67 H 23.61 V 6.30 H 236.91 V 64.15 H 94.45 V 114.13 H 217.23 V 171.98 H 94.45 V 229.82 H 239.27 Z"></path>
@@ -1247,6 +1997,31 @@ body[data-palette="dark1"] .hero-heading {
 })();
 </script>
 <!-- ===== /NAV-DOCKED TOGGLE ===== -->
+<!-- ===== HERO-CARD LIFECYCLE GUARD ===== -->
+<script>
+(function () {
+  var hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  var scheduled = false;
+  function updateHeroState() {
+    scheduled = false;
+    var animationEnd = hero.offsetTop + hero.offsetHeight * 0.7;
+    document.body.classList.toggle('hero-passed', window.scrollY >= animationEnd);
+  }
+  function scheduleHeroState() {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(updateHeroState);
+  }
+
+  window.addEventListener('scroll', scheduleHeroState, { passive: true });
+  window.addEventListener('resize', scheduleHeroState);
+  window.addEventListener('pageshow', scheduleHeroState);
+  scheduleHeroState();
+})();
+</script>
+<!-- ===== /HERO-CARD LIFECYCLE GUARD ===== -->
 <!-- ===== TWEAK-PALETTE (техническая кнопка, удалить перед сдачей) =====
      Переключатель цветовых схем для живого сравнения вариантов.
      Меняет --yellow/--black/фон body инлайн-стилями (у них наивысший
@@ -1256,8 +2031,8 @@ body[data-palette="dark1"] .hero-heading {
   <button id="tweak-palette-toggle" style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,0,0,0.15);background:#fff;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.25);font-size:17px;line-height:1;padding:0;">🎨</button>
   <div id="tweak-palette-panel" style="display:none;position:absolute;bottom:46px;right:0;background:#fff;border:1px solid rgba(0,0,0,0.12);border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.25);padding:8px;min-width:210px;">
     <div style="font-size:11px;color:#888;margin:2px 6px 6px;">Палитра (тех. кнопка)</div>
-    <button class="tweak-palette-option" data-palette="default" style="display:block;width:100%;text-align:left;padding:7px 8px;border:none;background:none;cursor:pointer;border-radius:6px;font-size:13px;color:#111;">Текущая (светлая)</button>
-    <button class="tweak-palette-option" data-palette="dark1" style="display:block;width:100%;text-align:left;padding:7px 8px;border:none;background:none;cursor:pointer;border-radius:6px;font-size:13px;color:#111;">Тёмная (Midnight Blue)</button>
+    <button class="tweak-palette-option" data-palette="dark1" style="display:block;width:100%;text-align:left;padding:7px 8px;border:none;background:none;cursor:pointer;border-radius:6px;font-size:13px;color:#111;">Тёмная (Midnight Blue) · по умолчанию</button>
+    <button class="tweak-palette-option" data-palette="default" style="display:block;width:100%;text-align:left;padding:7px 8px;border:none;background:none;cursor:pointer;border-radius:6px;font-size:13px;color:#111;">Светлая</button>
     <button class="tweak-palette-option" data-palette="bork" style="display:block;width:100%;text-align:left;padding:7px 8px;border:none;background:none;cursor:pointer;border-radius:6px;font-size:13px;color:#111;">Bork (тёплый тёмный)</button>
   </div>
 </div>
@@ -1363,7 +2138,268 @@ body[data-palette="dark1"] .hero-heading {
       currentKey = newKey;
     });
   });
+
+  // Midnight Blue is the production default; applying it through the same
+  // path also swaps raster assets and animation colour attributes correctly.
+  var defaultPaletteButton = document.querySelector('.tweak-palette-option[data-palette="dark1"]');
+  if (defaultPaletteButton) defaultPaletteButton.click();
 })();
 </script>
 <!-- ===== /TWEAK-PALETTE ===== -->
+<script>
+  // Build the client decision map immediately before the benefits section.
+  (function () {
+    var overview = document.getElementById('overview');
+    if (!overview || document.getElementById('client-guide')) return;
+
+    var section = document.createElement('section');
+    section.id = 'client-guide';
+    section.className = 'case-map-section';
+    section.setAttribute('aria-labelledby', 'case-map-title');
+    section.innerHTML = `
+      <div class="container">
+        <div class="case-map-shell">
+          <div class="case-map-intro case-map-reveal">
+            <div>
+              <h2 id="case-map-title" class="case-map-title">Ребёнку должно быть лучше. Ваша позиция должна это доказать.</h2>
+            </div>
+              <p class="case-map-lead"><strong>В центре дела - конкретная жизнь ребёнка, а не воля случая.</strong> Если вы уверены, что именно с вами ему будет стабильнее, безопаснее и спокойнее, одной уверенности мало: позицию нужно заранее выстроить и подтвердить.</p>
+          </div>
+          <div class="case-map-board case-map-reveal">
+            <article class="case-map-primary">
+              <div class="case-map-card-label"><span>Главный вопрос</span><span>Ст. 65 СК РФ</span></div>
+              <div class="case-map-primary-content">
+                <h3>Место жительства ребёнка</h3>
+                <div class="case-map-primary-copy">
+                  <p>Суд оценивает не один «сильный аргумент», а всю семейную реальность: отношения с ребёнком, привычный уклад, возраст, привязанности и возможность каждого родителя обеспечить устойчивые условия жизни и развития. Более высокий доход или собственная квартира сами по себе спор не решают.</p>
+                  <ul class="case-map-factors" aria-label="Основные обстоятельства"><li>Привязанность</li><li>Ежедневная забота</li><li>Режим и занятость</li><li>Мнение ребёнка</li><li>Привычная среда</li></ul>
+                </div>
+              </div>
+            </article>
+            <aside class="case-map-side">
+              <div><div class="case-map-side-label">Связанные вопросы</div><h3 class="case-map-side-title">Одно решение меняет всю систему</h3></div>
+              <ol class="case-map-issues"><li>Порядок общения</li><li>Переезд и выезд за границу</li><li>Алименты на ребёнка</li><li>Родительские права</li></ol>
+              <div class="case-map-strategy" aria-label="Этапы работы"><span>Факты</span><span>Стратегия</span><span>Решение</span></div>
+            </aside>
+          </div>
+          <section class="case-map-proof case-map-reveal" aria-labelledby="case-map-proof-title">
+            <div>
+              <div class="case-map-side-label">Что действительно важно</div>
+              <h3 id="case-map-proof-title">Суд не выбирает родителя по шаблону</h3>
+            </div>
+            <div>
+              <p class="case-map-proof-intro">Ребёнок не остаётся с матерью только потому, что она мать, и не переезжает к отцу только потому, что у него больше денег. Сравнивается вся обстановка - и то, как каждое изменение скажется на ребёнке не в теории, а каждый день.</p>
+              <div class="case-map-proof-grid">
+                <div class="case-map-proof-item"><strong>Условия жизни</strong><p>Жильё, стабильный доход, отдельное место для ребёнка, школа, медицина и реальная возможность обеспечить его потребности.</p></div>
+                <div class="case-map-proof-item"><strong>Фактическая забота</strong><p>Кто занимается здоровьем, учёбой и режимом, знает окружение ребёнка и присутствует в его жизни не эпизодически.</p></div>
+                <div class="case-map-proof-item"><strong>Цена перемен</strong><p>Переезд в другой регион, смена школы, тесное жильё, новый семейный уклад или разрыв устойчивых связей - всё требует оценки.</p></div>
+              </div>
+              <p class="case-map-proof-note">Задача адвоката - перевести ваше понимание того, что лучше для ребёнка, на язык фактов, документов и процессуальной стратегии.</p>
+            </div>
+          </section>
+          <div class="case-map-routes case-map-reveal" aria-label="Выберите свою ситуацию">
+            <a href="mama.html" class="case-map-route" data-audience="Мама">
+              <div class="case-map-route-content"><div><div class="case-map-route-label">Для мамы · 01</div><h3>Сохранить ребёнку привычный уклад и заботу</h3></div><p>Как подтвердить ежедневную заботу мамы, сохранить ребёнку привычные дом, режим и окружение и при этом выстроить безопасное общение с отцом.</p><span class="case-map-route-arrow">Разбор для мамы&nbsp; ↗</span></div>
+            </a>
+            <a href="papa.html" class="case-map-route" data-audience="Папа">
+              <div class="case-map-route-content"><div><div class="case-map-route-label">Для папы · 02</div><h3>Доказать, что с отцом ребёнку лучше</h3></div><p>Как представить условия жизни, стабильность и реальное участие отца, чтобы добиваться проживания ребёнка с ним либо точного порядка общения.</p><span class="case-map-route-arrow">Разбор для папы&nbsp; ↗</span></div>
+            </a>
+          </div>
+        </div>
+      </div>`;
+    overview.parentNode.insertBefore(section, overview);
+
+    // Keep the five interactive anchors intact while adapting their message
+    // to the lawful evidence-building process used in child-residence cases.
+    function replaceTextNodes(element, values) {
+      if (!element) return;
+      var nodes = Array.prototype.filter.call(element.childNodes, function (node) {
+        return node.nodeType === Node.TEXT_NODE;
+      });
+      values.forEach(function (value, index) {
+        if (nodes[index]) {
+          nodes[index].nodeValue = value;
+        } else {
+          element.appendChild(document.createTextNode(value));
+        }
+      });
+    }
+
+    var overviewStatement = [
+      'Факты ',
+      ' превращаю в доказательства, ',
+      ' документы собираю законно, ',
+      ' специалистов подключаю по задаче, ',
+      ' процесс выстраиваю целиком - ',
+      ' позиция выдерживает проверку в суде.'
+    ];
+    replaceTextNodes(overview.querySelector('.what_you_get-text'), overviewStatement);
+    replaceTextNodes(overview.querySelector('.what_you_get-text-mobile'), overviewStatement);
+
+    var processCards = [
+      {
+        title: 'Факты превращаю в доказательства',
+        text: 'Определяю, какие обстоятельства нужно подтвердить: ежедневную заботу, условия проживания, режим ребёнка, его связи со школой, врачами и обоими родителями.'
+      },
+      {
+        title: 'Доказательства собираю законно',
+        text: 'Использую допустимые источники: адвокатские запросы, характеристики, сведения образовательных и медицинских организаций, переписку, расходы, фото и видео.'
+      },
+      {
+        title: 'Подключаю профильных специалистов',
+        text: 'При необходимости готовлю вопросы для психологического исследования или судебной экспертизы, анализирую заключения органов опеки и специалистов.'
+      },
+      {
+        title: 'Процесс выстраиваю как систему',
+        text: 'Иск или возражения, ходатайства, свидетели, обследование жилья, экспертиза и тактика в заседании работают на одну доказуемую позицию.'
+      },
+      {
+        title: 'Проверяю позицию до суда',
+        text: 'Заранее нахожу слабые места, оцениваю доказательства другой стороны и готовлю ответы. Не обещаю результат - строю позицию, способную выдержать проверку.'
+      }
+    ];
+    overview.querySelectorAll('.capa-card').forEach(function (card, index) {
+      var copy = processCards[index];
+      if (!copy) return;
+      var heading = card.querySelector('.capa-card-heading');
+      var text = card.querySelector('.capa-card-text');
+      if (heading) heading.textContent = copy.title;
+      if (text) text.textContent = copy.text;
+    });
+
+    var revealItems = section.querySelectorAll('.case-map-reveal');
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      revealItems.forEach(function (item) { item.classList.add('is-visible'); });
+    } else {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(function (item) { observer.observe(item); });
+    }
+  })();
+
+  // Keep the secondary hero CTA useful after removing the old fork section.
+  document.querySelectorAll('.nav-button-secondary[href="#services_column"]').forEach(function (link) {
+    link.setAttribute('href', '#client-guide');
+  });
+</script>
+<script>
+  // Align the persistent summary and navigation with the client-guide block.
+  (function () {
+    var summary = document.querySelector('.nav-top-text');
+    if (summary) {
+      summary.textContent = 'Исход спора о ребёнке определяет не один аргумент, а комплексная стратегия. Выстраиваю дело целиком: доказательства, исследования, процедуры и профильные специалисты работают на одну цель - убедить суд поддержать вашу позицию.';
+    }
+
+    var positionHit = document.querySelector('.nav-menu-item > .nav-link[href="#overview"]');
+    var methodHit = document.querySelector('.nav-menu-item > .nav-link[href="#services"]');
+
+    function retargetNav(hit, href, label, ariaLabel) {
+      if (!hit) return;
+      var item = hit.closest('.nav-menu-item');
+      var visibleLink = item && item.querySelector('.hero-navigation-link');
+      hit.setAttribute('href', href);
+      hit.setAttribute('aria-label', ariaLabel);
+      if (visibleLink) {
+        visibleLink.setAttribute('href', href);
+        visibleLink.textContent = label;
+      }
+    }
+
+    retargetNav(positionHit, '#client-guide', 'Позиция', 'Позиция по делу');
+    retargetNav(methodHit, '#overview', 'Методика', 'Методика работы');
+
+    var positionGhost = document.querySelector('.hero-link-ghost[data-link-id="what-you-get"]');
+    var methodGhost = document.querySelector('.hero-link-ghost[data-link-id="services"]');
+    if (positionGhost) positionGhost.textContent = 'позиция';
+    if (methodGhost) methodGhost.textContent = 'методика';
+  })();
+
+  // Replace generic FAQ copy with the questions clients actually ask in
+  // child-residence disputes, then balance the two columns at four items each.
+  (function () {
+    var faqRoot = document.getElementById('faq');
+    if (!faqRoot) return;
+
+    var questions = [
+      {
+        q: 'Есть ли у матери преимущество в споре о месте жительства ребёнка?',
+        a: 'Автоматического преимущества нет. Суд исходит из равенства прав родителей и интересов ребёнка: оценивает привязанность, фактическую заботу, привычный уклад, возраст, условия жизни и возможность каждого родителя обеспечить воспитание и развитие.'
+      },
+      {
+        q: 'Может ли ребёнок остаться жить с отцом?',
+        a: 'Да. Если доказательства показывают, что проживание с отцом лучше отвечает интересам ребёнка, суд может определить место жительства с ним. Более высокий доход сам по себе не решает спор - важна вся семейная ситуация.'
+      },
+      {
+        q: 'Какие доказательства важны для суда?',
+        a: 'Подтверждения ежедневной заботы, режима и участия в учёбе и лечении; документы о жилье и занятости; сведения из школы и медицинских организаций; переписка, расходы, свидетели, заключение опеки и при необходимости специалистов.'
+      },
+      {
+        q: 'Можно ли договориться без суда?',
+        a: 'Да. Родители могут заключить соглашение о месте жительства ребёнка и порядке общения. Если договорённость защищает интересы ребёнка и реально исполнима, переговоры часто дают более спокойный и быстрый результат.'
+      },
+      {
+        q: 'Как учитывается мнение ребёнка?',
+        a: 'Суд оценивает мнение ребёнка вместе с его возрастом, зрелостью, привязанностями и обстоятельствами семьи. Для ребёнка, достигшего десяти лет, его учёт обязателен, если это не противоречит его интересам.'
+      },
+      {
+        q: 'Что делать, если второй родитель препятствует общению?',
+        a: 'Фиксировать нарушения, не втягивать ребёнка в конфликт и быстро определить правовой маршрут: переговоры, обращение в орган опеки или требование об установлении порядка общения в суде.'
+      },
+      {
+        q: 'Можно ли переехать с ребёнком в другой регион или за границу?',
+        a: 'Переезд оценивается через интересы ребёнка: влияние на школу, здоровье, привычное окружение и связь со вторым родителем. До переезда важно оценить согласие родителей, действующие ограничения и риск судебного спора.'
+      },
+      {
+        q: 'Как адвокат выстраивает доказательную позицию?',
+        a: 'Сначала определяет юридически значимые обстоятельства и слабые места дела, затем формирует план допустимых доказательств: запросы, документы, свидетели, обследование жилья, заключения опеки и специалистов, ходатайства и тактику в суде.'
+      }
+    ];
+
+    var columns = faqRoot.querySelectorAll('.faq-colum-item');
+    var originalItems = faqRoot.querySelectorAll('.faq');
+    if (columns.length < 2 || !originalItems.length) return;
+
+    while (faqRoot.querySelectorAll('.faq').length < questions.length) {
+      var cloneIndex = faqRoot.querySelectorAll('.faq').length;
+      var clone = originalItems[0].cloneNode(true);
+      var toggle = clone.querySelector('.faq-toggle');
+      var list = clone.querySelector('.faq-list');
+      clone.removeAttribute('id');
+      toggle.id = 'custom-faq-toggle-' + cloneIndex;
+      list.id = 'custom-faq-list-' + cloneIndex;
+      toggle.setAttribute('aria-controls', list.id);
+      toggle.setAttribute('aria-expanded', 'false');
+      list.setAttribute('aria-labelledby', toggle.id);
+      toggle.classList.remove('w--open');
+      list.classList.remove('w--open');
+      columns[1].appendChild(clone);
+
+      var toggleClone = clone.querySelector('.faq-toggle');
+      var listClone = clone.querySelector('.faq-list');
+      function toggleCustomFaq(event) {
+        if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        var isOpen = toggleClone.classList.toggle('w--open');
+        listClone.classList.toggle('w--open', isOpen);
+        toggleClone.setAttribute('aria-expanded', String(isOpen));
+      }
+      toggleClone.addEventListener('click', toggleCustomFaq);
+      toggleClone.addEventListener('keydown', toggleCustomFaq);
+    }
+
+    faqRoot.querySelectorAll('.faq').forEach(function (item, index) {
+      var copy = questions[index];
+      if (!copy) return;
+      var heading = item.querySelector('.faq-heading');
+      var answer = item.querySelector('.faq-answer');
+      if (heading) heading.textContent = copy.q;
+      if (answer) answer.textContent = copy.a;
+    });
+  })();
+</script>
 </body></html>
