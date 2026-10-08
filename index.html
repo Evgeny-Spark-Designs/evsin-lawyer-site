@@ -680,6 +680,12 @@ body[data-palette="dark1"] .hero-heading {
     width: 95.3%;
     margin-inline: auto;
   }
+  /* Keep the final preloader frame pixel-aligned with the resized hero wordmark.
+     The base Webflow width is 94.44vw; the live hero mark is 95.3% of that. */
+  .nesh-logo-preload-wrap > .nesh-logo-preload-svg {
+    left: 0.25vw;
+    width: 90.001vw;
+  }
   @keyframes heroLogoRolesReveal {
     to {
       opacity: 1;
