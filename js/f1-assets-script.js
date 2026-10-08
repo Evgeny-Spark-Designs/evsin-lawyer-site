@@ -193,6 +193,16 @@ const MobileMenu = {
 
     // Add click handler
     Utils.addEvent(this.menuTrigger, 'click', () => this.toggle());
+    this.menuTrigger.setAttribute('role', 'button');
+    this.menuTrigger.setAttribute('tabindex', '0');
+    this.menuTrigger.setAttribute('aria-label', 'Открыть меню');
+    this.menuTrigger.setAttribute('aria-expanded', 'false');
+    Utils.addEvent(this.menuTrigger, 'keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        this.toggle();
+      }
+    });
 
     console.log('✓ Mobile Menu initialized');
   },
@@ -207,6 +217,8 @@ const MobileMenu = {
 
   open() {
     this.isOpen = true;
+    this.menuTrigger.setAttribute('aria-expanded', 'true');
+    this.menuTrigger.setAttribute('aria-label', 'Закрыть меню');
 
     // Reveal menu from top to bottom
     gsap.to(this.menuWrap, {
@@ -233,6 +245,8 @@ const MobileMenu = {
 
   close() {
     this.isOpen = false;
+    this.menuTrigger.setAttribute('aria-expanded', 'false');
+    this.menuTrigger.setAttribute('aria-label', 'Открыть меню');
 
     // Hide menu from bottom to top
     gsap.to(this.menuWrap, {
